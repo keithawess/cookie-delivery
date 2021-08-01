@@ -6,7 +6,8 @@
   box-shadow: black 2px 2px;
   border-radius: 10px;
   border: white solid 5px;
-  width: 200px;
+  width: 75%;
+  max-width: 300px;
 }
 
 .bg-sign-green{
@@ -30,6 +31,10 @@
 /* Background Colors */
 .bg-bisque{
   background-color: bisque;
+}
+
+.bg-town{
+  background-image: url("./components/townbackdrop.jpg");
 }
 
 /* Typography */
