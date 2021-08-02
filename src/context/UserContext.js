@@ -9,9 +9,12 @@ export function UserProvider(props) {
 
     const login = useCallback((username, password) => {
         async function fetchData() {
-            const res = await loginCall("/api/users/login");
+            const res = await loginCall("/api/users/login", {
+                username: username,
+                password: password,
+            });
             if (res.success) {
-                setUsername(res.data.username);
+                setUsername(username);
             }
             else {
                 return res.error;

@@ -9,8 +9,7 @@ router.post("/signup", (req, res) => {
     password &&
     username.length > 3 &&
     username.length <= 20 &&
-    password.length >= 6 &&
-    password.length <= 20
+    password.length >= 6
   ) {
     return signup(res, username, password);
   }

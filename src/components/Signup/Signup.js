@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../context";
+import useFetch from "../../hooks/useFetch";
 
 function Signup() {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [error, setError] = useState("");
+  const { login } = useContext(UserContext);
+  const { callAPI: signupCall } = useFetch("POST");
 
   return (
     <div>
@@ -22,16 +27,41 @@ function Signup() {
         <div>
           <label htmlFor="password">Password: </label>
           <input
+          type="password"
             value={passwordInput}
             onChange={(e) => {
               setPasswordInput(e.target.value);
             }}
           />
         </div>
-        
-        <button>
-            Signup
+
+        <button
+          onClick={async (e) => {
+              e.preventDefault();
+            if (
+              usernameInput &&
+              passwordInput &&
+              usernameInput.length > 3 &&
+              usernameInput.length <= 20 &&
+              passwordInput.length >= 6
+            ) {
+              let res = await signupCall("/api/users/signup", {
+                username: usernameInput,
+                password: passwordInput,
+              });
+              if (res.error) {
+                return setError(res.error);
+              }
+              setError("Signup successful!");
+              login(res.data);
+            } else {
+                setError("Username must be 3-20 characters long.\nPassword must be at least 6 characters long.")
+            }
+          }}
+        >
+          Signup
         </button>
+        {error && <div>{error}</div>}
       </form>
     </div>
   );
