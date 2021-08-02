@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Filter = require("bad-words");
-const { addNeighbor } = require("../models/folk.model");
+const { addNeighbor, getNeighborByAddress } = require("../models/folk.model");
 let filter = new Filter();
 
 router.post("/add", (req, res) => {
@@ -16,6 +16,20 @@ router.post("/add", (req, res) => {
       error: "Invalid data provided",
     });
   };
+});
+
+router.get("/get", (req, res) => {
+    const { address } = req.body;
+
+    if (address) {
+        getNeighborByAddress(res, address);
+    } else {
+        res.send ({
+            success: false,
+            data: null,
+            error: "Invalid data provided",
+        });
+    };
 });
 
 function validNeighbor(neighbor) {
