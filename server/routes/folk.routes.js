@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Filter = require("bad-words");
-const { addNeighbor, getNeighborByAddress } = require("../models/folk.model");
+const { addNeighbor, getNeighborByAddress, getRandomNeighbors } = require("../models/folk.model");
 let filter = new Filter();
 
 router.post("/add", (req, res) => {
@@ -31,6 +31,10 @@ router.get("/get", (req, res) => {
         });
     };
 });
+
+router.get("/random", (req, res) => {
+    getRandomNeighbors(res);
+})
 
 function validNeighbor(neighbor) {
   let { address, house, face, color, roundness, height } = neighbor;
