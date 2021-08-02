@@ -24,4 +24,23 @@ async function signup(res, username, password){
     }
 }
 
-module.exports = {signup};
+async function login(res, username, password)
+{
+    let json = {success: false, data: null, error: null};
+    try {
+        const users = await query("SELECT * FROM users WHERE username = ?", [username]);
+        const user = users[0] || { password: "1"};
+        const matches = await bcrypt.compare(password, user.password);
+        if (matches) {
+            json = {
+                ...json, success: matches, data: { uuid: user.uuid, id: user.id, username}
+            };
+        } else { json.error = "Username or Password were incorrect. Please try again."}
+    } catch (err) {
+        json.error = "Login failed";
+    } finally {
+        return res.send(json);
+    }
+}
+
+module.exports = {signup, login};
