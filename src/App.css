@@ -35,6 +35,7 @@
 
 .bg-town{
   background-image: url("./components/townbackdrop.jpg");
+  background-size: cover;
 }
 
 /* Typography */

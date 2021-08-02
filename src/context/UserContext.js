@@ -18,12 +18,8 @@ export function UserProvider(props) {
         } fetchData();
     }, [userId]);
 
-    const logout = useCallback(() => {
-        setUsername("");
-    });
-
     return (
-        <UserContext.Provider value= {{login, username}}>
+        <UserContext.Provider value= {{login, username, logout}}>
             {props.children}
         </UserContext.Provider>
     )
