@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useCallback, createContext} from "react";
 import useFetch from "../hooks/useFetch";
 
 export const UserContext = createContext(null);
 
 export function UserProvider(props) {
     const [username, setUsername] = useState("");
+    const { callAPI: loginCall } = useFetch("POST")
 
     const login = useCallback((username, password) => {
         async function fetchData() {
@@ -16,7 +17,11 @@ export function UserProvider(props) {
                 return res.error;
             }
         } fetchData();
-    }, [userId]);
+    }, [username]);
+
+    const logout = useCallback(() => {
+        setUsername("");
+    },[])
 
     return (
         <UserContext.Provider value= {{login, username, logout}}>
