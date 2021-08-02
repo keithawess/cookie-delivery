@@ -33,6 +33,10 @@
   background-color: bisque;
 }
 
+.bg-white{
+  background-size: white;
+}
+
 .bg-town{
   background-image: url("./components/townbackdrop.jpg");
   background-size: cover;
