@@ -13,7 +13,7 @@ async function signup(res, username, password){
         } else {
             const hashed = await bcrypt.hash(password, 10);
             const uuid = uuidv4();
-            await query("INSERT INTO users (uuid, username, password) VALUES (?,?,?)", [uuid, username, password]);
+            await query("INSERT INTO users (uuid, username, password) VALUES (?,?,?)", [uuid, username, hashed]);
             json = { ...json, success: true, data: "Signup was successful!"};
         }
 
