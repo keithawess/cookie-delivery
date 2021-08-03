@@ -7,7 +7,7 @@ async function auth(req, res, next)
             return res.send({
                 success: false,
                 data: null,
-                error: "Invalid Credentials 23",
+                error: "Invalid Credentials",
             });
         }
         req.user = user;

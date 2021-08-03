@@ -6,7 +6,7 @@ function Signup() {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [error, setError] = useState("");
-  const { login } = useContext(UserContext);
+  const { initialLogin } = useContext(UserContext);
   const { callAPI: signupCall } = useFetch("POST");
 
   return (
@@ -53,7 +53,7 @@ function Signup() {
                 return setError(res.error);
               }
               setError("Signup successful!");
-              login(res.data);
+              initialLogin(res.data);
             } else {
                 setError("Username must be 3-20 characters long.\nPassword must be at least 6 characters long.")
             }
