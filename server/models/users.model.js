@@ -24,9 +24,9 @@ async function signup(res, username, password){
     }
 }
 
-async function login(res, username, password)
+async function login(username, password)
 {
-    let json = {success: false, data: null, error: null};
+    let json = {data: null, error: null};
     try {
         const users = await query("SELECT * FROM users WHERE username = ?", [username]);
         const user = users[0] || { password: "1"};
@@ -39,8 +39,25 @@ async function login(res, username, password)
     } catch (err) {
         json.error = "Login failed";
     } finally {
-        return res.send(json);
+        return json;
     }
 }
 
-module.exports = {signup, login};
+async function findUser(res, uuid)
+{
+    let json = { success: false, data: null, error: null};
+    try {
+        const users = await query("SELECT * FROM users WHERE uuid = ?", [uuid]);
+        if (users.length === 0) {
+            json.error = "User does not exist";
+        } else {
+            json = { ...json, data: users[0] };
+        }
+    } catch (err) {
+        json.error = "Failed to get user by username";
+    } finally {
+        return json;
+    }
+}
+
+module.exports = {signup, login, findUser};

@@ -1,7 +1,7 @@
 const LocalStrategy = require("passport-local");
 const { Strategy } = require("passport-jwt");
 const jwt = require("jsonwebtoken");
-const { login, getByUuid } = require("../models/users.model");
+const { login, findUser } = require("../models/users.model");
 
 function configPassport(passport) {
   passport.use(
@@ -43,7 +43,7 @@ function configPassport(passport) {
       if(!payload || !payload.uuid) {
           return done(true, false, "Invalid Credentials");
       }
-      const {data, error} = await getByUuid(payload.uuid);
+      const {data, error} = await findUser(payload.uuid);
       if (error)
       {
           return done(true, false, "Invalid credentials");
