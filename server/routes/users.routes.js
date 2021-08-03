@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const auth = require("../middleware/auth.middleware")
-const { signup, login } = require("../models/users.model");
+const { signup } = require("../models/users.model");
 
 
 router.post("/signup", (req, res) => {
