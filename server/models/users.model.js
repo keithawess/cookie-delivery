@@ -33,7 +33,7 @@ async function login(username, password)
         const matches = await bcrypt.compare(password, user.password);
         if (matches) {
             json = {
-                ...json, success: matches, data: {username}
+                ...json, success: matches, data: {username: user.username, uuid: user.uuid, id: user.id}
             };
         } else { json.error = "Username or Password were incorrect. Please try again."}
     } catch (err) {
@@ -43,9 +43,9 @@ async function login(username, password)
     }
 }
 
-async function findUser(res, uuid)
+async function findUser(uuid)
 {
-    let json = { success: false, data: null, error: null};
+    let json = {data: null, error: null};
     try {
         const users = await query("SELECT * FROM users WHERE uuid = ?", [uuid]);
         if (users.length === 0) {

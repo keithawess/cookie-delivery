@@ -19,7 +19,7 @@ function configPassport(passport) {
       return done(
         null,
         {
-          username: data.username,
+          username: data.username, id: data.id, uuid: data.uuid
         },
         { token }
       );
