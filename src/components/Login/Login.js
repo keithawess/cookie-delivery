@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../context";
-import useFetch from "../../hooks/useFetch";
 
 function Login() {
   const [usernameInput, setUsernameInput] = useState("");

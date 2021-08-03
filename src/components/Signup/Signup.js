@@ -53,7 +53,7 @@ function Signup() {
                 return setError(res.error);
               }
               setError("Signup successful!");
-              initialLogin(res.data);
+              initialLogin(usernameInput, passwordInput);
             } else {
                 setError("Username must be 3-20 characters long.\nPassword must be at least 6 characters long.")
             }
