@@ -12,14 +12,17 @@ import Signup from "./components/Signup/Signup";
 import Street from "./components/Street/Street";
 import CharacterCreationPage from "./components/CharacterCreation/CharacterCreationPage"
 import ProtectedRoute from "./shared/ProtectedRoute";
-import { UserContext } from "./context";
+import { UserContext, NeighborContext } from "./context";
 import "./App.css";
 
 function App() {
   const { username, logout } = useContext(UserContext);
+  const {neighborhood, vin} = useContext(NeighborContext);
   return (
     <Router>
       <div className="App bg-town">
+        {neighborhood.map(val => val.name)}
+        {vin}
         {!username && (
           <Switch>
             <ProtectedRoute reqUser={false} exact path={"/"}>

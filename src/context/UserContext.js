@@ -26,7 +26,7 @@ export function UserProvider(props) {
     
 const login = useCallback((user) => {
     setUsername(user.username);
-})
+});
 
 useEffect(()=> {
     async function validate() {
