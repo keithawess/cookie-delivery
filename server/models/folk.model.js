@@ -69,17 +69,31 @@ async function getNeighborByAddress(res, address) {
   }
 }
 
-async function getRandomNeighbors(res){
-    let json = {success: false, data: null, error: null};
-    try {
-        const neighbors = await query("SELECT * FROM folk ORDER BY RAND() LIMIT 10");
-        json = {...json, success: true, data: neighbors};
-    } catch (err) {
-        console.log(err);
-        json.error = "Failed to round up neighbors";
-    } finally {
-        return res.send(json);
-    }
+async function getRandomNeighbors(res) {
+  let json = { success: false, data: null, error: null };
+  try {
+    const neighbors = await query(
+      "SELECT * FROM folk ORDER BY RAND() LIMIT 10"
+    );
+    json = { ...json, success: true, data: neighbors };
+  } catch (err) {
+    console.log(err);
+    json.error = "Failed to round up neighbors";
+  } finally {
+    return res.send(json);
+  }
 }
 
-module.exports = { addNeighbor, getNeighborByAddress, getRandomNeighbors };
+async function getPopulation(res) {
+  let json = { success: false, data: null, error: null };
+  try {
+    const count = await query("SELECT COUNT(*) FROM folk");
+    json = { ...json, success: true, data: count[0]["COUNT(*)"]};
+  } catch (err) {
+    json.error = "Failed to round up neighbors";
+  } finally {
+    return res.send(json);
+  }
+}
+
+module.exports = { addNeighbor, getNeighborByAddress, getRandomNeighbors, getPopulation };

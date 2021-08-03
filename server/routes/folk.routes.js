@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Filter = require("bad-words");
-const { addNeighbor, getNeighborByAddress, getRandomNeighbors } = require("../models/folk.model");
+const {
+  addNeighbor,
+  getNeighborByAddress,
+  getRandomNeighbors,
+  getPopulation,
+} = require("../models/folk.model");
 let filter = new Filter();
 
 router.post("/add", (req, res) => {
@@ -15,26 +20,30 @@ router.post("/add", (req, res) => {
       data: null,
       error: "Invalid data provided",
     });
-  };
+  }
 });
 
 router.get("/get", (req, res) => {
-    const { address } = req.body;
+  const { address } = req.body;
 
-    if (address) {
-        getNeighborByAddress(res, address);
-    } else {
-        res.send ({
-            success: false,
-            data: null,
-            error: "Invalid data provided",
-        });
-    };
+  if (address) {
+    getNeighborByAddress(res, address);
+  } else {
+    res.send({
+      success: false,
+      data: null,
+      error: "Invalid data provided",
+    });
+  }
+});
+
+router.get("/population", (req, res) => {
+  getPopulation(res);
 });
 
 router.get("/random", (req, res) => {
-    getRandomNeighbors(res);
-})
+  getRandomNeighbors(res);
+});
 
 function validNeighbor(neighbor) {
   let { address, house, face, color, roundness, height } = neighbor;
@@ -61,10 +70,8 @@ function validNeighbor(neighbor) {
     arr = address.split(" ");
     if (
       isNaN(arr[0]) ||
-      ((arr[1] !== "Butterscotch" &&
-        arr[1] !== "Gingerbread") ||
-        (arr[2] !== "Ave" &&
-        arr[2] !== "St"))
+      (arr[1] !== "Butterscotch" && arr[1] !== "Gingerbread") ||
+      (arr[2] !== "Ave" && arr[2] !== "St")
     ) {
       output = false;
     }
