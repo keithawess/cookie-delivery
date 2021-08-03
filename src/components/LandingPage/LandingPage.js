@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NeighborContext } from "../../context";
 import { useHistory } from "react-router-dom";
 
-function LandingPage({population}) {
+function LandingPage() {
   const history = useHistory();
+  const {population} = useContext(NeighborContext);
 
   return (
     <div className="landing-page flex">

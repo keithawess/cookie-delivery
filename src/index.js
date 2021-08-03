@@ -1,15 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {UserProvider} from "./context"
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { UserProvider, NeighborProvider } from "./context";
 
 ReactDOM.render(
-  <UserProvider>
-    <App />
-  </UserProvider>,
-  document.getElementById('root')
+  <NeighborProvider>
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </NeighborProvider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

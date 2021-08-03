@@ -17,15 +17,6 @@ export function NeighborProvider(props) {
         } fetchData();
     }, [])
 
-    const getPopulation = useCallback(()=>{
-        async function fetchData() {
-            const res = await popCall("/api/folk/population");
-            if (res.success) {
-                return res.data;
-            }
-        }
-    })
-
     return (
         <NeighborContext.Provider value= {{population}}>
             {props.children}
