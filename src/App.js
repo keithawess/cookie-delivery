@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Street from "./components/Street/Street";
 import CharacterCreationPage from "./components/CharacterCreation/CharacterCreationPage"
+import ProtectedRoute from "./shared/ProtectedRoute";
 import { UserContext } from "./context";
 import "./App.css";
 
@@ -21,15 +22,15 @@ function App() {
       <div className="App bg-town">
         {!username && (
           <Switch>
-            <Route exact path="/">
+            <ProtectedRoute reqUser={false} exact path={"/"}>
               <LandingPage />
-            </Route>
-            <Route path="/login">
+            </ProtectedRoute>
+            <ProtectedRoute reqUser={false} path={"/login"}>
               <Login />
-            </Route>
-            <Route path="/signup">
+            </ProtectedRoute>
+            <ProtectedRoute reqUser={false} path={"/signup"}>
               <Signup />
-            </Route>
+            </ProtectedRoute>
             <Route path="*">
               <Redirect to="/" />
             </Route>
@@ -54,12 +55,12 @@ function App() {
               Logout
             </NavLink>
             <Switch>
-              <Route exact path="/">
+              <ProtectedRoute reqUser={true} exact path="/">
                 <Street />
-              </Route>
-              <Route path="/neighbor-creator">
+              </ProtectedRoute>
+              <ProtectedRoute reqUser={true} path="/neighbor-creator">
                 <CharacterCreationPage />
-              </Route>
+              </ProtectedRoute>
 
               <Route path="*">
                 <Redirect to="/" />
