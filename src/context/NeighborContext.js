@@ -67,13 +67,21 @@ export function NeighborProvider(props) {
 
     const getCookie = useCallback((neighbor) => {
         let rand = Math.floor(Math.random() * 10);
+        let randTime = Math.floor((Math.random() * 60) + 1) * 60;
         while (neighborhood[rand].address === neighbor.address)
         {
             rand = Math.floor(Math.random() * 10);
         }
-        cookies.set(`To: ${neighborhood[rand].name}, From: ${neighbor.name}`, neighborhood[rand].address);
-        console.log(cookies.get(`To: ${neighborhood[rand].name}, From: ${neighbor.name}`));
+        cookies.set(`${neighborhood[rand].name}'s Cookie`, `To: ${neighborhood[rand].name} ${neighborhood[rand].address}, From: ${neighbor.name}`, {maxAge: randTime});
+        return `This cookie goes to ${neighborhood[rand].name}, located at ${neighborhood[rand].address}. This cookie goes bad in ${randTime / 60} minutes, so don't be late!`
     }, [neighborhood])
+
+    const giveCookie = useCallback((neighbor)=> {
+       
+       let temp = cookies.get(`${neighbor.name}'s Cookie`);
+
+        console.log(temp);
+    })
 
     function shuffle(array) {
         var currentIndex = array.length,  randomIndex;
@@ -94,7 +102,7 @@ export function NeighborProvider(props) {
       }
 
     return (
-        <NeighborContext.Provider value= {{population, addNeighbor, neighborhood, vin, getCookie}}>
+        <NeighborContext.Provider value= {{population, addNeighbor, neighborhood, vin, getCookie, giveCookie}}>
             {props.children}
         </NeighborContext.Provider>
     )
