@@ -21,8 +21,7 @@ function App() {
   return (
     <Router>
       <div className="App bg-town">
-        {neighborhood.map(val => val.name)}
-        {vin}
+        {neighborhood.length > 0 && neighborhood.map(val => val.name)}
         {!username && (
           <Switch>
             <ProtectedRoute reqUser={false} exact path={"/"}>

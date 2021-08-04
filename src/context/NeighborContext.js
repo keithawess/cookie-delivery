@@ -6,7 +6,7 @@ export const NeighborContext = createContext(null);
 
 export function NeighborProvider(props) {
     const [neighborhood, setNeighborhood] = useState([]);
-    const [vin, setVin] = useState(["Hello", "V", "I", "N"]);
+    const [vin, setVin] = useState([]);
     const [population, setPopulation] = useState(0);
     const { callAPI: popCall } = useFetch("GET");
     const { callAPI: addCall } = useFetch("POST");
@@ -27,7 +27,15 @@ export function NeighborProvider(props) {
             const res = await randCall("/api/folk/random");
             if (res.success)
             {
-                setNeighborhood(res.data);
+                let temp = [...vin, ...res.data];
+                while (temp.length > 10)
+                {
+                    temp.pop();
+                }
+                temp = shuffle(temp);
+                console.log(temp.length);
+                
+                setNeighborhood(temp);
             }
             else {
                 return res.error;
@@ -54,6 +62,24 @@ export function NeighborProvider(props) {
             }
         } fetchData();
     }, []);
+
+    function shuffle(array) {
+        var currentIndex = array.length,  randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+      
+        return array;
+      }
 
     return (
         <NeighborContext.Provider value= {{population, addNeighbor, neighborhood, vin}}>
