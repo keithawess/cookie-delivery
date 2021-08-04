@@ -17,11 +17,9 @@ import "./App.css";
 
 function App() {
   const { username, logout } = useContext(UserContext);
-  const {neighborhood, vin} = useContext(NeighborContext);
   return (
     <Router>
       <div className="App bg-town">
-        {neighborhood.length > 0 && neighborhood.map(val => val.name)}
         {!username && (
           <Switch>
             <ProtectedRoute reqUser={false} exact path={"/"}>
