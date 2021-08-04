@@ -1,5 +1,6 @@
 import React, {useState, useCallback, createContext, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
+import Cookies from "universal-cookie";
 const NEIGHBOR_LIMIT = 10;
 
 export const NeighborContext = createContext(null);
@@ -11,6 +12,7 @@ export function NeighborProvider(props) {
     const { callAPI: popCall } = useFetch("GET");
     const { callAPI: addCall } = useFetch("POST");
     const { callAPI: randCall } = useFetch("GET");
+    const cookies = new Cookies();
 
     useEffect(() => {
         async function fetchData() {
@@ -28,7 +30,7 @@ export function NeighborProvider(props) {
             if (res.success)
             {
                 let temp = [...vin, ...res.data];
-                while (temp.length > 10)
+                while (temp.length > NEIGHBOR_LIMIT)
                 {
                     temp.pop();
                 }
@@ -63,6 +65,16 @@ export function NeighborProvider(props) {
         } fetchData();
     }, []);
 
+    const getCookie = useCallback((neighbor) => {
+        let rand = Math.floor(Math.random() * 10);
+        while (neighborhood[rand].address === neighbor.address)
+        {
+            rand = Math.floor(Math.random() * 10);
+        }
+        cookies.set(`To: ${neighborhood[rand].name}, From: ${neighbor.name}`, neighborhood[rand].address);
+        console.log(cookies.get(`To: ${neighborhood[rand].name}, From: ${neighbor.name}`));
+    }, [neighborhood])
+
     function shuffle(array) {
         var currentIndex = array.length,  randomIndex;
       
@@ -82,7 +94,7 @@ export function NeighborProvider(props) {
       }
 
     return (
-        <NeighborContext.Provider value= {{population, addNeighbor, neighborhood, vin}}>
+        <NeighborContext.Provider value= {{population, addNeighbor, neighborhood, vin, getCookie}}>
             {props.children}
         </NeighborContext.Provider>
     )
