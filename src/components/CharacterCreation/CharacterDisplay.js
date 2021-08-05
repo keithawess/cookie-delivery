@@ -1,11 +1,27 @@
-import React from 'react'
+import React from "react";
+import sad from "./images/sad.png";
+import happy from "./images/happy.png";
+import skeptic from "./images/skeptic.png";
+import smile from "./images/smile.png";
+const faces = [sad, happy, skeptic, smile];
 
-function CharacterDisplay() {
-    return (
-        <div>
-            CharacterDisplay
-        </div>
-    )
+function CharacterDisplay({ name, face, color, roundness, height }) {
+  return (
+    <div className="flex col align-items-center justify-center">
+      {name}
+      <div
+        className="flex justify-center align-items-center"
+        style={{
+          backgroundColor: color,
+          borderRadius: roundness + "%",
+          height: height + "px",
+          width: height + "px",
+        }}
+      >
+        <img className="neighbor-face" src={faces[face]} />
+      </div>
+    </div>
+  );
 }
 
-export default CharacterDisplay
+export default CharacterDisplay;

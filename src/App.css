@@ -32,10 +32,27 @@
   max-height: 200px;
 }
 
+.neighbor-face{
+  height: 80%;
+  width: 80%;
+}
+
 /* Flex */
 
 .flex{
   display: flex;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.align-items-center{
+  align-items: center;
+}
+
+.col{
+  flex-direction: column;
 }
 
 /* Background Colors */
