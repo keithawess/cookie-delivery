@@ -21,7 +21,7 @@ function CharacterCreationPage() {
   return (
     <div className={"bg-white character-creation-container center"}>
       CharacterCreactionPage
-      <div className="margin-bot-20">
+      <div className="flex justify-center align-items-center character-creation-neighbor">
         <CharacterDisplay
           name={name}
           face={face}
@@ -75,8 +75,10 @@ function CharacterCreationPage() {
 
         <div className="margin-5 flex-third">
           <label htmlFor="colorSelector">Color:</label>
+          <br/>
           <input
             id="colorSelector"
+            className="input-container"
             type="color"
             value={color}
             onChange={(e) => {
@@ -88,10 +90,13 @@ function CharacterCreationPage() {
         <div className="margin-5 flex-third">
           <label htmlFor="faceSelector">Face:</label>
           <div className="flex wrap">
-            {faces.map((val) => {
+            {faces.map((val, i) => {
               return (
-                <div className="margin-5 flex flex-half justify-space-around align-items-center">
-                  <img className="neighbor-face" src={val} />
+                <div className="margin-5 flex flex-half justify-space-around align-items-center" onClick={()=>
+                {
+                    setFace(i);
+                }}>
+                  <img className={`neighbor-face ${face === i ? "selected" : ""}`} src={val}/>
                 </div>
               );
             })}
