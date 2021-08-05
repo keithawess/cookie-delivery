@@ -63,8 +63,10 @@ function validNeighbor(neighbor) {
     face < 4 &&
     color &&
     roundness &&
+    roundess >= 0 &&
     roundness <= 50 &&
     height &&
+    heigh >= 50 &&
     height <= 100
   ) {
     arr = address.split(" ");

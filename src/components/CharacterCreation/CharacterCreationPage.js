@@ -59,18 +59,30 @@ function CharacterCreationPage() {
 
           <div>
             <label htmlFor="roundnessBar">Roundness:</label>
-            <input id="roundnessBar" type="range"   min="0"
+            <input
+              id="roundnessBar"
+              type="range"
+              min="0"
               max="50"
               value={roundness}
               onChange={(e) => {
                 setRoundness(e.target.value);
-              }} className="slider" />
+              }}
+              className="slider"
+            />
           </div>
         </div>
 
         <div className="margin-5 flex-third">
           <label htmlFor="colorSelector">Color:</label>
-          <input id="colorSelector" type="color" value={color} onChange={(e)=>{setColor(e.target.value)}}/>
+          <input
+            id="colorSelector"
+            type="color"
+            value={color}
+            onChange={(e) => {
+              setColor(e.target.value);
+            }}
+          />
         </div>
 
         <div className="margin-5 flex-third">
