@@ -10,10 +10,6 @@
   max-width: 300px;
 }
 
-.bg-sign-green{
-  background-color: #308446;
-}
-
 .landing-page{
   z-index: 1;
   height: 100vh;
@@ -139,6 +135,10 @@
 .bg-town{
   background-image: url("./components/townbackdrop.jpg");
   background-size: cover;
+}
+
+.bg-sign-green{
+  background-color: #308446;
 }
 
 /* Typography */

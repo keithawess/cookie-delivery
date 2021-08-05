@@ -49,6 +49,8 @@ function validNeighbor(neighbor) {
   let { address, house, face, color, roundness, height } = neighbor;
   let output = true;
 
+  console.log(address, height, house, color, face, roundness)
+
   if (neighbor.name) {
     filter.isProfane(neighbor.name) ? (neighbor.name = "Bobby Pottymouth") : "";
   } else {
@@ -57,16 +59,16 @@ function validNeighbor(neighbor) {
   if (
     address &&
     address.split(" ").length === 3 &&
-    house &&
+    !isNaN(house) &&
     house < 3 &&
-    face &&
+    !isNaN(face) &&
     face < 4 &&
     color &&
-    roundness &&
-    roundess >= 0 &&
+    !isNaN(roundness) &&
+    roundness >= 0 &&
     roundness <= 50 &&
     height &&
-    heigh >= 50 &&
+    height >= 50 &&
     height <= 100
   ) {
     arr = address.split(" ");

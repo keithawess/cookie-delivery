@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { NeighborContext } from "../../context";
 import CharacterHouseDisplay from "./CharacterHouseDisplay";
 import CharacterDisplay from "./CharacterDisplay";
 import sad from "./images/sad.png";
@@ -21,6 +22,8 @@ function CharacterCreationPage() {
   const [houseNum, setHouseNum] = useState(123);
   const [streetName, setStreetName] = useState("Gingerbread");
   const [streetType, setStreetType] = useState("Ave");
+
+  const {addNeighbor} = useContext(NeighborContext);
 
   return (
     <div className={"bg-white character-creation-container center"}>
@@ -122,7 +125,7 @@ function CharacterCreationPage() {
         <label htmlFor="houseSelector">House:</label>
         <div className="flex align-items-end justify-space-evenly">
           {houseArr.map((house, i) => {
-            return <div onClick={()=>{setHouse(i)}}><CharacterHouseDisplay house={i} height={90} /></div>;
+            return <div onClick={()=>{setHouse(i)}}><CharacterHouseDisplay key={i} house={i} height={90} /></div>;
           })}
         </div>
       </div>
@@ -145,7 +148,12 @@ function CharacterCreationPage() {
       </div>
     <button
     onClick={()=>{
-
+        if(name && !isNaN(houseNum))
+        {
+            let address = `${houseNum} ${streetName} ${streetType}`
+            let neighbor = {name, address, house, face, color, roundness, height}
+            addNeighbor(neighbor);
+        }
     }}>
         Submit
     </button>

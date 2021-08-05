@@ -45,14 +45,14 @@ export function NeighborProvider(props) {
 
   const addNeighbor = useCallback((neighbor) => {
     async function fetchData() {
-      const res = addCall("/api/folk/add", {
+      const res = addCall("/api/folk/add", { neighbor: {
         name: neighbor.name,
         address: neighbor.address,
         house: neighbor.house,
         face: neighbor.face,
         color: neighbor.color,
         roundness: neighbor.roundness,
-        height: neighbor.height,
+        height: neighbor.height, }
       });
       if (res.success) {
         setVin((vin) => [...vin, neighbor]);
