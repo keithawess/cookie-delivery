@@ -22,6 +22,12 @@
   justify-content: center;
 }
 
+/* Character Creation Styling */
+
+.character-creation-container{
+  width: 90%;
+}
+
 /* Neighbor Styling */
 
 .max-height-100{
@@ -35,6 +41,21 @@
 .neighbor-face{
   height: 80%;
   width: 80%;
+}
+
+/* Positioning */
+
+.center{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-5{
+  margin: 5px;
+}
+
+.margin-bot-20{
+  margin-bottom: 20px;
 }
 
 /* Flex */
