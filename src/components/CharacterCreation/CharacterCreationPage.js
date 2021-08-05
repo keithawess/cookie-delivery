@@ -5,30 +5,40 @@ import sad from "./images/sad.png";
 import happy from "./images/happy.png";
 import skeptic from "./images/skeptic.png";
 import smile from "./images/smile.png";
+import house1 from './images/house1.png'
+import house2 from './images/house2.png'
+import house3 from './images/house3.png'
+const houseArr = [house1, house2, house3]
 const faces = [sad, happy, skeptic, smile];
 
 function CharacterCreationPage() {
-  const [step, setStep] = useState("0");
   const [height, setHeight] = useState(75);
-  const [roundness, setRoundness] = useState(0);
+  const [roundness, setRoundness] = useState(25);
   const [color, setColor] = useState("#FFFFFF");
   const [name, setName] = useState("");
   const [face, setFace] = useState(0);
-  const [addressNum, setAddressNum] = useState(0);
-  const [addressStName, setAddressStName] = useState("Gingerbread");
-  const [addressStType, setAddressStType] = useState("Ave");
+  const [house, setHouse] = useState(0);
+  const [houseNum, setHouseNum] = useState(123);
+  const [streetName, setStreetName] = useState("Gingerbread");
+  const [streetType, setStreetType] = useState("Ave");
 
   return (
     <div className={"bg-white character-creation-container center"}>
       CharacterCreactionPage
-      <div className="flex justify-center align-items-center character-creation-neighbor">
+      <div className="flex justify-space-around align-items-center character-creation-neighbor">
+        <div className="flex-half">
+          <CharacterHouseDisplay house={house} height={150} />
+        </div>
+        <div className="margin-5 flex-half">
         <CharacterDisplay
           name={name}
           face={face}
           color={color}
           roundness={roundness}
           height={height}
-        />
+        />  
+        </div>
+
       </div>
       <div className="margin-5">
         <label htmlFor="nameInput">Name: </label>
@@ -75,7 +85,7 @@ function CharacterCreationPage() {
 
         <div className="margin-5 flex-third">
           <label htmlFor="colorSelector">Color:</label>
-          <br/>
+          <br />
           <input
             id="colorSelector"
             className="input-container"
@@ -92,17 +102,54 @@ function CharacterCreationPage() {
           <div className="flex wrap">
             {faces.map((val, i) => {
               return (
-                <div className="margin-5 flex flex-half justify-space-around align-items-center" onClick={()=>
-                {
+                <div
+                  className="margin-5 flex flex-half justify-space-around align-items-center"
+                  onClick={() => {
                     setFace(i);
-                }}>
-                  <img className={`neighbor-face ${face === i ? "selected" : ""}`} src={val}/>
+                  }}
+                >
+                  <img
+                    className={`neighbor-face ${face === i ? "selected" : ""}`}
+                    src={val}
+                  />
                 </div>
               );
             })}
           </div>
         </div>
       </div>
+      <div className="center">
+        <label htmlFor="houseSelector">House:</label>
+        <div className="flex align-items-end justify-space-evenly">
+          {houseArr.map((house, i) => {
+            return <div onClick={()=>{setHouse(i)}}><CharacterHouseDisplay house={i} height={90} /></div>;
+          })}
+        </div>
+      </div>
+      <div>
+          <label htmlFor="houseNumber">House Number: </label>
+          <input id="houseNumber" value={houseNum} onChange={(e)=>{setHouseNum(e.target.value)}}/>
+          <label htmlFor="streetName"> Street: </label>
+          <select id="streetName" value={streetName} onChange={(e)=>{
+              setStreetName(e.target.value);
+          }}>
+              <option value="Gingerbread">Gingerbread</option>
+              <option value="Butterscotch">Butterscotch</option>
+          </select>
+          <select id="streetType" value={streetType} onChange={(e)=>{
+              setStreetType(e.target.value);
+          }}>
+              <option value="St">St</option>
+              <option value="Ave">Ave</option>
+          </select>
+      </div>
+    <button
+    onClick={()=>{
+
+    }}>
+        Submit
+    </button>
+
     </div>
   );
 }

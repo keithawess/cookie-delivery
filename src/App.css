@@ -44,7 +44,7 @@
 .selected{
   background-color: #53ddff;
   border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.308) 5px 5px 5px;
+  box-shadow: rgba(0, 0, 0, 0.308) 3px 3px 5px;
 }
 
 /* Neighbor Styling */
@@ -60,6 +60,7 @@
 .neighbor-face{
   width: 80%;
 }
+
 
 /* Positioning */
 
@@ -98,8 +99,16 @@
   justify-content: space-around;
 }
 
+.justify-end{
+  justify-content: flex-end;
+}
+
 .align-items-center{
   align-items: center;
+}
+
+.align-items-end{
+  align-items: flex-end;
 }
 
 .wrap{
@@ -118,7 +127,7 @@
   flex-basis: calc(100% / 2 - 10px);
 }
 
-/* Background Colors */
+/* Backgrounds*/
 .bg-bisque{
   background-color: bisque;
 }
