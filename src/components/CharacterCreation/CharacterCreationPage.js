@@ -30,36 +30,36 @@ function CharacterCreationPage() {
           height={height}
         />
       </div>
-      <div>
+      <div className="margin-5">
         <label htmlFor="nameInput">Name:</label>
         <input id="nameInput" />
       </div>
-      <div className="flex">
-        <div>
-          <div>
-            <label htmlFor="heightBar">Height:</label>
-            <input id="heightBar" type="range" />
+      <div className="flex input-container">
+          <div className="margin-5 flex-third">
+            <div>
+              <label htmlFor="heightBar">Height:</label>
+              <input id="heightBar" type="range" className="slider" />
+            </div>
+
+            <div>
+              <label htmlFor="roundnessBar">Roundness:</label>
+              <input id="roundnessBar" type="range" className="slider" />
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="roundnessBar">Roundness:</label>
-            <input id="roundnessBar" type="range" />
+          <div className="margin-5 flex-third">
+            <label htmlFor="colorSelector">Color:</label>
+            <input id="colorSelector" type="color" />
           </div>
-        </div>
 
-        <div>
-          <label htmlFor="colorSelector">Color:</label>
-          <input id="colorSelector" type="color" />
-        </div>
-
-        <div>
-          <label htmlFor="faceSelector">Face:</label>
-          <div>
-            {faces.map((val) => {
-              return <img src={val} />;
-            })}
+          <div className="margin-5 flex-third">
+            <label htmlFor="faceSelector">Face:</label>
+            <div className="flex wrap">
+              {faces.map((val) => {
+                return <div className="margin-5 flex flex-half justify-space-around align-items-center"><img className="neighbor-face" src={val} /></div>;
+              })}
+            </div>
           </div>
-        </div>
       </div>
     </div>
   );
