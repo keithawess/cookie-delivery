@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NeighborContext } from "../../context";
 import CharacterHouseDisplay from "./CharacterHouseDisplay";
 import CharacterDisplay from "./CharacterDisplay";
@@ -6,10 +6,10 @@ import sad from "./images/sad.png";
 import happy from "./images/happy.png";
 import skeptic from "./images/skeptic.png";
 import smile from "./images/smile.png";
-import house1 from './images/house1.png'
-import house2 from './images/house2.png'
-import house3 from './images/house3.png'
-const houseArr = [house1, house2, house3]
+import house1 from "./images/house1.png";
+import house2 from "./images/house2.png";
+import house3 from "./images/house3.png";
+const houseArr = [house1, house2, house3];
 const faces = [sad, happy, skeptic, smile];
 
 function CharacterCreationPage() {
@@ -23,7 +23,11 @@ function CharacterCreationPage() {
   const [streetName, setStreetName] = useState("Gingerbread");
   const [streetType, setStreetType] = useState("Ave");
 
-  const {addNeighbor} = useContext(NeighborContext);
+  const { addNeighbor, neighborMsg, setNeighborMsg } = useContext(NeighborContext);
+
+  useEffect(()=>{
+      return setNeighborMsg("");
+  },[])
 
   return (
     <div className={"bg-white character-creation-container center"}>
@@ -33,15 +37,14 @@ function CharacterCreationPage() {
           <CharacterHouseDisplay house={house} height={150} />
         </div>
         <div className="margin-5 flex-half">
-        <CharacterDisplay
-          name={name}
-          face={face}
-          color={color}
-          roundness={roundness}
-          height={height}
-        />  
+          <CharacterDisplay
+            name={name}
+            face={face}
+            color={color}
+            roundness={roundness}
+            height={height}
+          />
         </div>
-
       </div>
       <div className="margin-5">
         <label htmlFor="nameInput">Name: </label>
@@ -106,12 +109,14 @@ function CharacterCreationPage() {
             {faces.map((val, i) => {
               return (
                 <div
+                  key={i + 1000}
                   className="margin-5 flex flex-half justify-space-around align-items-center"
                   onClick={() => {
                     setFace(i);
                   }}
                 >
                   <img
+                    key={i + 100}
                     className={`neighbor-face ${face === i ? "selected" : ""}`}
                     src={val}
                   />
@@ -125,39 +130,70 @@ function CharacterCreationPage() {
         <label htmlFor="houseSelector">House:</label>
         <div className="flex align-items-end justify-space-evenly">
           {houseArr.map((house, i) => {
-            return <div onClick={()=>{setHouse(i)}}><CharacterHouseDisplay key={i} house={i} height={90} /></div>;
+            return (
+              <div
+                key={i + 10000}
+                onClick={() => {
+                  setHouse(i);
+                }}
+              >
+                <CharacterHouseDisplay key={i} house={i} height={90} />
+              </div>
+            );
           })}
         </div>
       </div>
       <div>
-          <label htmlFor="houseNumber">House Number: </label>
-          <input id="houseNumber" value={houseNum} onChange={(e)=>{setHouseNum(e.target.value)}}/>
-          <label htmlFor="streetName"> Street: </label>
-          <select id="streetName" value={streetName} onChange={(e)=>{
-              setStreetName(e.target.value);
-          }}>
-              <option value="Gingerbread">Gingerbread</option>
-              <option value="Butterscotch">Butterscotch</option>
-          </select>
-          <select id="streetType" value={streetType} onChange={(e)=>{
-              setStreetType(e.target.value);
-          }}>
-              <option value="St">St</option>
-              <option value="Ave">Ave</option>
-          </select>
+        <label htmlFor="houseNumber">House Number: </label>
+        <input
+          id="houseNumber"
+          value={houseNum}
+          onChange={(e) => {
+            setHouseNum(e.target.value);
+          }}
+        />
+        <label htmlFor="streetName"> Street: </label>
+        <select
+          id="streetName"
+          value={streetName}
+          onChange={(e) => {
+            setStreetName(e.target.value);
+          }}
+        >
+          <option value="Gingerbread">Gingerbread</option>
+          <option value="Butterscotch">Butterscotch</option>
+        </select>
+        <select
+          id="streetType"
+          value={streetType}
+          onChange={(e) => {
+            setStreetType(e.target.value);
+          }}
+        >
+          <option value="St">St</option>
+          <option value="Ave">Ave</option>
+        </select>
       </div>
-    <button
-    onClick={()=>{
-        if(name && !isNaN(houseNum))
-        {
-            let address = `${houseNum} ${streetName} ${streetType}`
-            let neighbor = {name, address, house, face, color, roundness, height}
+      <button
+        onClick={() => {
+          if (name && !isNaN(houseNum)) {
+            let address = `${houseNum} ${streetName} ${streetType}`;
+            let neighbor = {
+              name,
+              address,
+              house,
+              face,
+              color,
+              roundness,
+              height,
+            };
             addNeighbor(neighbor);
-        }
-    }}>
+          }
+        }}
+      >
         Submit
-    </button>
-
+      </button>
+      <div>{neighborMsg}</div>
     </div>
   );
 }

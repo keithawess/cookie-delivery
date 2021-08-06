@@ -9,6 +9,7 @@ export function NeighborProvider(props) {
   const [neighborhood, setNeighborhood] = useState([]);
   const [vin, setVin] = useState([]);
   const [population, setPopulation] = useState(0);
+  const [neighborMsg, setNeighborMsg] = useState("");
   const { callAPI: popCall } = useFetch("GET");
   const { callAPI: addCall } = useFetch("POST");
   const { callAPI: randCall } = useFetch("GET");
@@ -45,20 +46,23 @@ export function NeighborProvider(props) {
 
   const addNeighbor = useCallback((neighbor) => {
     async function fetchData() {
-      const res = addCall("/api/folk/add", { neighbor: {
-        name: neighbor.name,
-        address: neighbor.address,
-        house: neighbor.house,
-        face: neighbor.face,
-        color: neighbor.color,
-        roundness: neighbor.roundness,
-        height: neighbor.height, }
+      const res = await addCall("/api/folk/add", {
+        neighbor: {
+          name: neighbor.name,
+          address: neighbor.address,
+          house: neighbor.house,
+          face: neighbor.face,
+          color: neighbor.color,
+          roundness: neighbor.roundness,
+          height: neighbor.height,
+        },
       });
+
       if (res.success) {
         setVin((vin) => [...vin, neighbor]);
-        return "Successfully added neighbor!";
+        setNeighborMsg("Successfully added neighbor!");
       } else {
-        return res.error;
+        setNeighborMsg(res.error);
       }
     }
     fetchData();
@@ -91,9 +95,8 @@ export function NeighborProvider(props) {
       from = split[6];
       cookies.remove(`${neighbor.name}'s Cookie`);
       return `Om nom nom! ${from}'s cookies are the best. Thank you for delivering this to me!`;
-    }
-    else {
-        return `You don't have anything for me? I have cookies to give out if you're not busy.`
+    } else {
+      return `You don't have anything for me? I have cookies to give out if you're not busy.`;
     }
   });
 
@@ -126,6 +129,8 @@ export function NeighborProvider(props) {
         vin,
         getCookie,
         giveCookie,
+        neighborMsg,
+        setNeighborMsg
       }}
     >
       {props.children}
