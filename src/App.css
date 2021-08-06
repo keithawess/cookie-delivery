@@ -45,6 +45,11 @@
   height: 40px;
 }
 
+.closed{
+  display: hidden;
+  height: 0%;
+}
+
 /* Character Creation Styling */
 
 .character-creation-container {

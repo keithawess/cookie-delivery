@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { UserProvider, NeighborProvider } from "./context";
+import { UserProvider, NeighborProvider, CookieProvider } from "./context";
 
 ReactDOM.render(
   <NeighborProvider>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <CookieProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </CookieProvider>
   </NeighborProvider>,
   document.getElementById("root")
 );
