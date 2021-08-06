@@ -9,6 +9,6 @@ export default function ProtectedRoute({reqUser, path, children}) {
     {
         return <Route path={path}>{children}</Route>;
     } else {
-        return <Redirect to ="/" />;
+        return <Redirect to ={`/${username ? "street" : ""}`} />;
     }
 }

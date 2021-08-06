@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { NavLink, Redirect, Route } from "react-router-dom";
 import { NeighborContext } from "../../context";
 import CharacterHouseDisplay from "../CharacterCreation/CharacterHouseDisplay";
 
@@ -15,13 +15,13 @@ function Street() {
             .filter((house, i) => i < 5)
             .map((house, i) => {
               return (
-                <div key={i + 100} onClick={()=>{<Redirect to="/"/>}}>
+                <NavLink key={i + 100} to={"/address"}>
                   <CharacterHouseDisplay
                     key={i}
                     height={100}
                     house={house.house}
                   />
-                </div>
+                </NavLink>
               );
             })}
         </div>
@@ -30,13 +30,13 @@ function Street() {
             .filter((house, i) => i >= 5)
             .map((house, i) => {
               return (
-                <div key={i + 100} onClick={()=>{<Redirect to="/"/>}}>
+                <NavLink key={i + 100} to="/address">
                   <CharacterHouseDisplay
                     key={i}
                     height={100}
                     house={house.house}
                   />
-                </div>
+                </NavLink>
               );
             })}
         </div>
