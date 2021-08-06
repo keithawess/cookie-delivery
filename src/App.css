@@ -37,10 +37,14 @@
   width: 95%;
 }
 
+.width-90{
+  width: 90%;
+}
+
 .selected{
   background-color: #53ddff;
   border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.308) 3px 3px 5px;
+  box-shadow: rgba(238, 216, 216, 0.308) 3px 3px 5px;
 }
 
 /* Neighbor Styling */
@@ -57,6 +61,11 @@
   width: 80%;
 }
 
+.dialogue-container{
+  border: black solid 3px;
+  border-radius: 10px;
+}
+
 
 /* Positioning */
 
@@ -71,6 +80,38 @@
 
 .margin-bot-20{
   margin-bottom: 20px;
+}
+
+.absolute{
+  position: absolute;
+}
+
+.abs-container{
+  width: 97%;
+}
+
+.abs-house{
+  left:10%;
+}
+
+.abs-dia{
+  top: 290px;
+}
+
+.abs-neighbor{
+  top:200px;
+}
+
+.z-back{
+  z-index: 0;
+}
+
+.z-middle{
+  z-index: 5;
+}
+
+.z-front{
+  z-index: 10;
 }
 
 /* Flex */
@@ -132,9 +173,14 @@
   background-color: white;
 }
 
+.bg-cloud{
+  background-color: rgba(245, 245, 245, 0.63);
+}
+
 .bg-town{
   background-image: url("./components/townbackdrop.jpg");
   background-size: cover;
+  height: 100vh
 }
 
 .bg-sign-green{

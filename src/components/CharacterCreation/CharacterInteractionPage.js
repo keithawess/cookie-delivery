@@ -5,10 +5,18 @@ import { NeighborContext, UserContext } from "../../context";
 import CharacterDisplay from "./CharacterDisplay";
 
 function CharacterInteractionPage() {
-    const {username} = useContext(UserContext);
-    const { visitAddress, neighborMsg, setNeighborMsg, currNeighbor, giveCookie, getCookie } =
-    useContext(NeighborContext);
-    const [dialogue, setDialogue] = useState(`Hi, ${username}! It's nice to see you. Would you mind doing me a favor?`)
+  const { username } = useContext(UserContext);
+  const {
+    visitAddress,
+    neighborMsg,
+    setNeighborMsg,
+    currNeighbor,
+    giveCookie,
+    getCookie,
+  } = useContext(NeighborContext);
+  const [dialogue, setDialogue] = useState(
+    `Hi, ${username}! It's nice to see you. Would you mind doing me a favor?`
+  );
   let { add } = useParams();
   let address = add.split("%20").join(" ");
 
@@ -23,13 +31,37 @@ function CharacterInteractionPage() {
       <div>
         {currNeighbor && (
           <>
-            <div className="absolute abs-center z-back">
-              <CharacterHouseDisplay house={currNeighbor.house} height={200} />
+            <div className="absolute abs-container z-back">
+              <CharacterHouseDisplay house={currNeighbor.house} height={275} />
             </div>
-            <div className="absolute abs-center z-middle"><CharacterDisplay color={currNeighbor.color} height={currNeighbor.height} face={currNeighbor.face} roundness={currNeighbor.roundness} /></div>
-            <div>
+            <div className="absolute abs-container abs-neighbor z-middle">
+              <CharacterDisplay
+                color={currNeighbor.color}
+                height={currNeighbor.height}
+                face={currNeighbor.face}
+                roundness={currNeighbor.roundness}
+              />
+            </div>
+            <div className="z-front absolute abs-container abs-dia">
+              <div className="dialogue-container center bg-cloud width-90">
                 <div>{dialogue}</div>
-                <div><button onClick={()=>{setDialogue(getCookie(currNeighbor))}}>Accept Delivery</button><button onClick={()=>{setDialogue(giveCookie(currNeighbor))}}>Deliver Cookie</button></div>
+                <div>
+                  <button
+                    onClick={() => {
+                      setDialogue(getCookie(currNeighbor));
+                    }}
+                  >
+                    Accept Delivery
+                  </button>
+                  <button
+                    onClick={() => {
+                      setDialogue(giveCookie(currNeighbor));
+                    }}
+                  >
+                    Deliver Cookie
+                  </button>
+                </div>
+              </div>
             </div>
           </>
         )}
