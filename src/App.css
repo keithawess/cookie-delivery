@@ -34,10 +34,15 @@
   height: 100px;
   width: 100%;
   background-color: brown;
+  border-top: tan solid 5px;
 }
 
 .border {
   border: black solid 2px;
+}
+
+.cookie{
+  height: 40px;
 }
 
 /* Character Creation Styling */
