@@ -6,6 +6,7 @@ export const CookieContext = createContext(null);
 
 export function CookieProvider(props) {
   const [cookieBox, setCookieBox] = useState([]);
+  const [hidden, setHidden] = useState(true);
   const cookies = new Cookies();
   const {getCookie, giveCookie} = useContext(NeighborContext);
 
@@ -25,6 +26,6 @@ export function CookieProvider(props) {
 
 
   return (
-    <CookieContext.Provider value={{ cookieBox }}>{props.children}</CookieContext.Provider>
+    <CookieContext.Provider value={{ cookieBox, hidden, setHidden }}>{props.children}</CookieContext.Provider>
   );
 }

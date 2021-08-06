@@ -45,8 +45,16 @@
   height: 40px;
 }
 
+.cookie-basket-transition{
+  transition: ease-in .5s;
+}
+
+.cookie-button{
+  transform: translateY(-80px);
+}
+
 .closed{
-  display: hidden;
+  display: none;
   height: 0%;
 }
 

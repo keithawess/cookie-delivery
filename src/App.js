@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,11 +14,12 @@ import CharacterCreationPage from "./components/CharacterCreation/CharacterCreat
 import CookieBasket from "./components/CookieBasket/CookieBasket";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import CharacterInteractionPage from "./components/CharacterCreation/CharacterInteractionPage";
-import { UserContext, NeighborContext } from "./context";
+import { UserContext, NeighborContext, CookieContext } from "./context";
 import "./App.css";
 
 function App() {
   const { username, logout } = useContext(UserContext);
+  const { hidden, setHidden } = useContext(CookieContext);
   return (
     <Router>
       <div className="App bg-town">
@@ -75,8 +76,8 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
-      <CookieBasket />
-      </div>
+        {username && <CookieBasket />}
+        </div>
     </Router>
   );
 }
