@@ -15,7 +15,7 @@ function Street() {
             .filter((house, i) => i < 5)
             .map((house, i) => {
               return (
-                <NavLink key={i + 100} to={"/address"}>
+                <NavLink key={i + 100} to={`/address/${house.address}`}>
                   <CharacterHouseDisplay
                     key={i}
                     height={100}
@@ -30,7 +30,7 @@ function Street() {
             .filter((house, i) => i >= 5)
             .map((house, i) => {
               return (
-                <NavLink key={i + 100} to="/address">
+                <NavLink key={i + 100} to={`/address/${house.address}`}>
                   <CharacterHouseDisplay
                     key={i}
                     height={100}

@@ -23,7 +23,7 @@ router.post("/add", (req, res) => {
   }
 });
 
-router.get("/get", (req, res) => {
+router.post("/get", (req, res) => {
   const { address } = req.body;
 
   if (address) {

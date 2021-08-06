@@ -7,12 +7,14 @@ export const NeighborContext = createContext(null);
 
 export function NeighborProvider(props) {
   const [neighborhood, setNeighborhood] = useState([]);
+  const [currNeighbor, setCurrNeighbor] = useState(null);
   const [vin, setVin] = useState([]);
   const [population, setPopulation] = useState(0);
   const [neighborMsg, setNeighborMsg] = useState("");
   const { callAPI: popCall } = useFetch("GET");
   const { callAPI: addCall } = useFetch("POST");
   const { callAPI: randCall } = useFetch("GET");
+  const { callAPI: houseCall } = useFetch("POST");
   const cookies = new Cookies();
 
   useEffect(() => {
@@ -34,8 +36,6 @@ export function NeighborProvider(props) {
           temp.pop();
         }
         temp = shuffle(temp);
-        console.log(temp.length);
-
         setNeighborhood(temp);
       } else {
         return res.error;
@@ -87,6 +87,22 @@ export function NeighborProvider(props) {
     [neighborhood]
   );
 
+  const visitAddress = useCallback(
+    (address) => {
+      async function fetchData() {
+        const res = await houseCall("/api/folk/get", {address: address})
+        if(res.success)
+        {
+          setCurrNeighbor( res.data);
+        }
+        else
+        {
+          setNeighborMsg(res.error);
+        }
+      } return fetchData();
+    }
+  )
+
   const giveCookie = useCallback((neighbor) => {
     console.log(cookies.get(`${neighbor.name}'s Cookie`));
     let from;
@@ -130,7 +146,9 @@ export function NeighborProvider(props) {
         getCookie,
         giveCookie,
         neighborMsg,
-        setNeighborMsg
+        setNeighborMsg,
+        visitAddress,
+        currNeighbor
       }}
     >
       {props.children}

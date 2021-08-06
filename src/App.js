@@ -40,7 +40,6 @@ function App() {
             </NavLink>
           </>
         )}
-        ;
         <Switch>
           <ProtectedRoute reqUser={false} exact path={"/"}>
             <LandingPage />
@@ -57,7 +56,7 @@ function App() {
           <ProtectedRoute reqUser={true} path="/neighbor-creator">
             <CharacterCreationPage />
           </ProtectedRoute>
-          <ProtectedRoute reqUser={true} path="/address">
+          <ProtectedRoute reqUser={true} path="/address/:add">
             <CharacterInteractionPage />
           </ProtectedRoute>
 
