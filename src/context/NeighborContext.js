@@ -87,21 +87,17 @@ export function NeighborProvider(props) {
     [neighborhood]
   );
 
-  const visitAddress = useCallback(
-    (address) => {
-      async function fetchData() {
-        const res = await houseCall("/api/folk/get", {address: address})
-        if(res.success)
-        {
-          setCurrNeighbor( res.data);
-        }
-        else
-        {
-          setNeighborMsg(res.error);
-        }
-      } return fetchData();
+  const visitAddress = useCallback((address) => {
+    async function fetchData() {
+      const res = await houseCall("/api/folk/get", { address: address });
+      if (res.success) {
+        setCurrNeighbor(res.data);
+      } else {
+        setNeighborMsg(res.error);
+      }
     }
-  )
+    return fetchData();
+  });
 
   const giveCookie = useCallback((neighbor) => {
     console.log(cookies.get(`${neighbor.name}'s Cookie`));
@@ -148,7 +144,7 @@ export function NeighborProvider(props) {
         neighborMsg,
         setNeighborMsg,
         visitAddress,
-        currNeighbor
+        currNeighbor,
       }}
     >
       {props.children}

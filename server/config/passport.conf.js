@@ -19,7 +19,9 @@ function configPassport(passport) {
       return done(
         null,
         {
-          username: data.username, id: data.id, uuid: data.uuid
+          username: data.username,
+          id: data.id,
+          uuid: data.uuid,
         },
         { token }
       );
@@ -39,22 +41,23 @@ function configPassport(passport) {
     jwtFromRequest: cookieJWTExtractor,
   };
 
-  passport.use("jwt", new Strategy(jwtOptions, async (payload, done) => {
-      if(!payload || !payload.uuid) {
-          return done(true, false, "Invalid Credentials");
+  passport.use(
+    "jwt",
+    new Strategy(jwtOptions, async (payload, done) => {
+      if (!payload || !payload.uuid) {
+        return done(true, false, "Invalid Credentials");
       }
-      const {data, error} = await findUser(payload.uuid);
-      if (error)
-      {
-          return done(true, false, "Invalid credentials");
+      const { data, error } = await findUser(payload.uuid);
+      if (error) {
+        return done(true, false, "Invalid credentials");
       }
       return done(false, data, null);
-  }));
+    })
+  );
 
   passport.serializeUser((user, done) => {
-      done(null, user.id);
-  })
-
+    done(null, user.id);
+  });
 }
 
 module.exports = configPassport;

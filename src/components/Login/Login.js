@@ -39,13 +39,11 @@ function Login() {
             if (usernameInput && passwordInput && !username) {
               let error = initialLogin(usernameInput, passwordInput);
               if (error) {
-                  setError(error);
+                setError(error);
               }
-              setError("Success!")
+              setError("Success!");
             } else {
-              setError(
-                "Please enter a username and password."
-              );
+              setError("Please enter a username and password.");
             }
           }}
         >

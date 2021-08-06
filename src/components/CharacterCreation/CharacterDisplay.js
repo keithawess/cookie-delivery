@@ -8,7 +8,7 @@ const faces = [sad, happy, skeptic, smile];
 function CharacterDisplay({ name, face, color, roundness, height }) {
   return (
     <div className="flex col align-items-center justify-center">
-      {name? name : <div>&nbsp;</div>}
+      {name ? name : <div>&nbsp;</div>}
       <div
         className="flex justify-center align-items-center"
         style={{

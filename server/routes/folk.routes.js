@@ -49,7 +49,7 @@ function validNeighbor(neighbor) {
   let { address, house, face, color, roundness, height } = neighbor;
   let output = true;
 
-  console.log(address, height, house, color, face, roundness)
+  console.log(address, height, house, color, face, roundness);
 
   if (neighbor.name) {
     filter.isProfane(neighbor.name) ? (neighbor.name = "Bobby Pottymouth") : "";

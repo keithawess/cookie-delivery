@@ -23,10 +23,19 @@ function App() {
       <div className="App bg-town">
         {username && (
           <nav className="flex justify-space-evenly">
-            <NavLink activeClassName="active nav-option" className="bg-sign-green white-border nav-option text-white" exact to="/street">
+            <NavLink
+              activeClassName="active nav-option"
+              className="bg-sign-green white-border nav-option text-white"
+              exact
+              to="/street"
+            >
               Street
             </NavLink>
-            <NavLink activeClassName="active nav-option" className="bg-sign-green white-border nav-option text-white" to="/neighbor-creator">
+            <NavLink
+              activeClassName="active nav-option"
+              className="bg-sign-green white-border nav-option text-white"
+              to="/neighbor-creator"
+            >
               Neighbor
             </NavLink>
             <NavLink

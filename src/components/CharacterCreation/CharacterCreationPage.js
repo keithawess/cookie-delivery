@@ -23,11 +23,12 @@ function CharacterCreationPage() {
   const [streetName, setStreetName] = useState("Gingerbread");
   const [streetType, setStreetType] = useState("Ave");
 
-  const { addNeighbor, neighborMsg, setNeighborMsg } = useContext(NeighborContext);
+  const { addNeighbor, neighborMsg, setNeighborMsg } =
+    useContext(NeighborContext);
 
-  useEffect(()=>{
-      return setNeighborMsg("");
-  },[])
+  useEffect(() => {
+    return setNeighborMsg("");
+  }, []);
 
   return (
     <div className={"bg-white character-creation-container center"}>

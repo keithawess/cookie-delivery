@@ -88,7 +88,7 @@ async function getPopulation(res) {
   let json = { success: false, data: null, error: null };
   try {
     const count = await query("SELECT COUNT(*) FROM folk");
-    json = { ...json, success: true, data: count[0]["COUNT(*)"]};
+    json = { ...json, success: true, data: count[0]["COUNT(*)"] };
   } catch (err) {
     json.error = "Failed to round up neighbors";
   } finally {
@@ -96,4 +96,9 @@ async function getPopulation(res) {
   }
 }
 
-module.exports = { addNeighbor, getNeighborByAddress, getRandomNeighbors, getPopulation };
+module.exports = {
+  addNeighbor,
+  getNeighborByAddress,
+  getRandomNeighbors,
+  getPopulation,
+};

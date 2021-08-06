@@ -27,7 +27,7 @@ function Signup() {
         <div>
           <label htmlFor="password">Password: </label>
           <input
-          type="password"
+            type="password"
             value={passwordInput}
             onChange={(e) => {
               setPasswordInput(e.target.value);
@@ -37,7 +37,7 @@ function Signup() {
 
         <button
           onClick={async (e) => {
-              e.preventDefault();
+            e.preventDefault();
             if (
               usernameInput &&
               passwordInput &&
@@ -55,7 +55,9 @@ function Signup() {
               setError("Signup successful!");
               initialLogin(usernameInput, passwordInput);
             } else {
-                setError("Username must be 3-20 characters long.\nPassword must be at least 6 characters long.")
+              setError(
+                "Username must be 3-20 characters long.\nPassword must be at least 6 characters long."
+              );
             }
           }}
         >
