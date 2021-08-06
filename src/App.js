@@ -22,23 +22,24 @@ function App() {
     <Router>
       <div className="App bg-town">
         {username && (
-          <>
-            <NavLink activeClassName="active" exact to="/street">
+          <nav className="flex justify-space-evenly">
+            <NavLink activeClassName="active nav-option" className="bg-sign-green white-border nav-option text-white" exact to="/street">
               Street
             </NavLink>
-            <NavLink activeClassName="active" to="/neighbor-creator">
-              Neighbor Creator
+            <NavLink activeClassName="active nav-option" className="bg-sign-green white-border nav-option text-white" to="/neighbor-creator">
+              Neighbor
             </NavLink>
             <NavLink
               onClick={() => {
                 logout();
               }}
-              activeClassName="active"
+              activeClassName="bg-sign-green"
+              className="bg-sign-green white-border nav-option text-white"
               to="/"
             >
               Logout
             </NavLink>
-          </>
+          </nav>
         )}
         <Switch>
           <ProtectedRoute reqUser={false} exact path={"/"}>
