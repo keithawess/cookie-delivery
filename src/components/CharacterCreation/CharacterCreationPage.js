@@ -69,7 +69,7 @@ function CharacterCreationPage() {
               onChange={(e) => {
                 setHeight(e.target.value);
               }}
-              className="slider"
+              className="width-95"
             />
           </div>
 
@@ -84,7 +84,7 @@ function CharacterCreationPage() {
               onChange={(e) => {
                 setRoundness(e.target.value);
               }}
-              className="slider"
+              className="width-95"
             />
           </div>
         </div>
