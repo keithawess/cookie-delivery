@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Street from "./components/Street/Street";
 import CharacterCreationPage from "./components/CharacterCreation/CharacterCreationPage";
+import CookieBasket from "./components/CookieBasket/CookieBasket";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import CharacterInteractionPage from "./components/CharacterCreation/CharacterInteractionPage";
 import { UserContext, NeighborContext } from "./context";
@@ -74,6 +75,7 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
+      <CookieBasket />
       </div>
     </Router>
   );
