@@ -41,25 +41,56 @@
   border: black solid 2px;
 }
 
-.cookie{
+.cookie {
   height: 40px;
 }
 
-.cookie-basket-transition{
-  transition: ease-in .5s;
+.cookie-basket-transition {
+  transition: ease-in 0.5s;
 }
 
-.cookie-button-up{
+.cookie-button-up {
   transform: translateY(-100px);
 }
 
-.cookie-button{
-  bottom:5px;
+.cookie-button {
+  bottom: 5px;
 }
 
-.closed{
-  display: none;
+.closed {
+  display: none !important;
   height: 0%;
+}
+
+.hidden {
+  display: none;
+}
+
+.full {
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.modal {
+  height: 90%;
+  width: 90%;
+  z-index: 100;
+  border: black solid 5px;
+}
+
+.modal-cookie {
+  height: 70%;
+  z-index: 101;
+}
+
+.cookie-info-top{
+  transform: translateY(-110px);
+}
+
+.cookie-info-bottom{
+  transform: translateY(120px);
 }
 
 /* Character Creation Styling */
@@ -127,6 +158,10 @@
 
 .absolute {
   position: absolute;
+}
+
+.fixed{
+  position:fixed;
 }
 
 .abs-container {
@@ -230,7 +265,7 @@
   height: 100vh;
 }
 
-.bg-street{
+.bg-street {
   background-image: url("./components/street.png");
   background-repeat: repeat-y;
 }

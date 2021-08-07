@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CookieDisplay from "./CookieDisplay";
 import { CookieContext } from "../../context";
 
 function CookieBasket({ cookie }) {
-  let cookies = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const { cookieBox, setHidden, hidden } = useContext(CookieContext);
   return (
     <div>
-      <div           className={`cookie-basket-transition absolute cookie-button ${
-            !hidden ? "cookie-button-up" : ""
-          }`}>
+      <div
+        className={`cookie-basket-transition absolute cookie-button ${
+          !hidden ? "cookie-button-up" : ""
+        }`}
+      >
         <button
           onClick={() => {
             if (hidden) {
@@ -30,16 +31,22 @@ function CookieBasket({ cookie }) {
         {cookieBox &&
           !hidden &&
           cookieBox.length > 0 &&
-          cookieBox.map((cookie, i) => {
-            return (
-              <div
-                key={i}
-                className="border flex-fifth flex justify-center align-items-center"
-              >
-                <CookieDisplay key={i + 100} cookie={0} />
-              </div>
-            );
-          })}
+          cookieBox
+            .filter((cookie, i) => {
+              if (i < 10) {
+                return true;
+              }
+            })
+            .map((cookie, i) => {
+              return (
+                <div
+                  key={i}
+                  className="border flex-fifth flex justify-center align-items-center"
+                >
+                  <CookieDisplay key={i + 100} cookie={0} info={cookie} />
+                </div>
+              );
+            })}
       </div>
     </div>
   );

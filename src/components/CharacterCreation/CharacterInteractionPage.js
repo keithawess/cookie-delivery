@@ -34,7 +34,7 @@ function CharacterInteractionPage() {
             <div className="absolute abs-container z-back">
               <CharacterHouseDisplay house={currNeighbor.house} height={275} />
             </div>
-            <div className="absolute abs-container abs-neighbor z-middle">
+            <div className="absolute abs-container abs-neighbor">
               <CharacterDisplay
                 color={currNeighbor.color}
                 height={currNeighbor.height}
@@ -42,7 +42,7 @@ function CharacterInteractionPage() {
                 roundness={currNeighbor.roundness}
               />
             </div>
-            <div className="z-front absolute abs-container abs-dia">
+            <div className="absolute abs-container abs-dia">
               <div className="dialogue-container center bg-cloud width-90">
                 <div>{dialogue}</div>
                 <div>
