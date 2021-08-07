@@ -18,16 +18,16 @@ function CookieDisplay({ cookie, info }) {
     >
       <div
         className={`fixed full flex justify-center align-items-center ${
-          !modal ? "closed" : ""
+          !modal ? "hidden" : ""
         }`}
       >
         <div className="absolute flex col justify-center align-items-center input-container center modal bg-white">
-          <b className="cookie-info-top">{info[0]}</b>
+          <b className="absolute cookie-info-top">{info[0]}</b>
           <img
             className="absolute center modal-cookie"
             src={cookieList[cookie]}
           />
-          <div className="cookie-info-bottom">
+          <div className="absolute cookie-info-bottom">
               {info[1]}
           </div>
         </div>

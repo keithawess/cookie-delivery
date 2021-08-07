@@ -58,12 +58,12 @@
 }
 
 .closed {
-  display: none !important;
+  display: none;
   height: 0%;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .full {
@@ -86,11 +86,10 @@
 }
 
 .cookie-info-top{
-  transform: translateY(-110px);
-}
+top: 10px;}
 
 .cookie-info-bottom{
-  transform: translateY(120px);
+  bottom: 5px;
 }
 
 /* Character Creation Styling */
