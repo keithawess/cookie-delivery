@@ -49,8 +49,12 @@
   transition: ease-in .5s;
 }
 
+.cookie-button-up{
+  transform: translateY(-100px);
+}
+
 .cookie-button{
-  transform: translateY(-80px);
+  bottom:5px;
 }
 
 .closed{
@@ -221,9 +225,14 @@
 }
 
 .bg-town {
-  background-image: url("./components/townbackdrop.jpg");
+  background-image: url("./components/townbackdrop.png");
   background-size: cover;
   height: 100vh;
+}
+
+.bg-street{
+  background-image: url("./components/street.png");
+  background-repeat: repeat-y;
 }
 
 .bg-sign-green {

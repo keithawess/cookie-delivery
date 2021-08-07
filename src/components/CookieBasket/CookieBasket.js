@@ -7,19 +7,28 @@ function CookieBasket({ cookie }) {
   const { cookieBox, setHidden, hidden } = useContext(CookieContext);
   return (
     <div>
-      <button className={`cookie-basket-transition ${!hidden? "cookie-button" : ""}`}
-        onClick={() => {
-          if (hidden) {
-            setHidden(false);
-          } else {
-            setHidden(true);
-          }
-        }}
+      <div           className={`cookie-basket-transition absolute cookie-button ${
+            !hidden ? "cookie-button-up" : ""
+          }`}>
+        <button
+          onClick={() => {
+            if (hidden) {
+              setHidden(false);
+            } else {
+              setHidden(true);
+            }
+          }}
+        >
+          Cookies
+        </button>
+      </div>
+      <div
+        className={`absolute basket flex wrap cookie-basket-transition ${
+          hidden ? "closed" : ""
+        }`}
       >
-        Cookies
-      </button>
-      <div className={`absolute basket flex wrap cookie-basket-transition ${hidden ? "closed" : ""}`}>
-        {cookieBox && !hidden &&
+        {cookieBox &&
+          !hidden &&
           cookieBox.length > 0 &&
           cookieBox.map((cookie, i) => {
             return (
