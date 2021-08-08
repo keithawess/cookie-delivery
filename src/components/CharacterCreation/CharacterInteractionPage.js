@@ -13,6 +13,7 @@ function CharacterInteractionPage() {
     currNeighbor,
     giveCookie,
     getCookie,
+    setCurrNeighbor
   } = useContext(NeighborContext);
   const [dialogue, setDialogue] = useState(
     `Hi, ${username}! It's nice to see you. Would you mind doing me a favor?`
@@ -24,6 +25,10 @@ function CharacterInteractionPage() {
     visitAddress(address);
     return setNeighborMsg("");
   }, []);
+
+  useEffect(() => {
+    return setCurrNeighbor(null);
+  },[])
 
   return (
     <div>

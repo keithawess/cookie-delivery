@@ -145,6 +145,7 @@ export function NeighborProvider(props) {
         setNeighborMsg,
         visitAddress,
         currNeighbor,
+        setCurrNeighbor
       }}
     >
       {props.children}

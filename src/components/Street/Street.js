@@ -1,14 +1,40 @@
-import React, { useContext } from "react";
-import { NavLink, Redirect, Route } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router";
 import { NeighborContext } from "../../context";
 import CharacterHouseDisplay from "../CharacterCreation/CharacterHouseDisplay";
 
 function Street() {
+  const history = useHistory();
+  const [searchBox, setSearchBox] = useState();
   const { neighborhood } = useContext(NeighborContext);
 
   return (
     <div className="bg-green height-95">
-      Street
+      <div>
+        <label className="text-white" htmlFor="search">
+          Address:{" "}
+        </label>{" "}
+        <input
+          value={searchBox}
+          onChange={(e) => {
+            setSearchBox(e.target.value);
+          }}
+          id="search"
+        />
+        <button
+          onClick={() => {
+            if (searchBox) {
+              let arr = searchBox.split(" ");
+              if (arr.length === 3 && !isNaN(arr[0])){
+                history.push(`/address/${arr.join("%20")}`);
+              }
+            }
+          }}
+        >
+          Search
+        </button>
+      </div>
       <div className="flex width-95 justify-center center height-95">
         <div className="flex col justify-space-evenly">
           {neighborhood
@@ -25,7 +51,8 @@ function Street() {
               );
             })}
         </div>
-        <div className="bg-grey flex-quarter">&nbsp;</div><div className="bg-grey flex-quarter street">&nbsp;</div>
+        <div className="bg-grey flex-quarter">&nbsp;</div>
+        <div className="bg-grey flex-quarter street">&nbsp;</div>
         <div className="flex col justify-space-evenly">
           {neighborhood
             .filter((house, i) => i >= 5)
