@@ -7,7 +7,7 @@ function CookieBasket({ cookie }) {
   return (
     <div>
       <div
-        className={`cookie-basket-transition absolute cookie-button ${
+        className={`cookie-basket-transition fixed cookie-button ${
           !hidden ? "cookie-button-up" : ""
         }`}
       >
@@ -24,7 +24,7 @@ function CookieBasket({ cookie }) {
         </button>
       </div>
       <div
-        className={`absolute basket flex wrap cookie-basket-transition ${
+        className={`fixed basket flex wrap cookie-basket-transition ${
           hidden ? "closed" : ""
         }`}
       >

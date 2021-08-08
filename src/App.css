@@ -261,13 +261,15 @@ top: 10px;}
 .bg-town {
   background-image: url("./components/townbackdrop.png");
   background-size: cover;
+  background-attachment: fixed;
   height: 100vh;
 }
 
-.bg-street {
+/* .bg-street {
   background-image: url("./components/street.png");
-  background-repeat: repeat-y;
-}
+  background-size: 100%;
+  background-size: cover;
+} */
 
 .bg-sign-green {
   background-color: #308446;
