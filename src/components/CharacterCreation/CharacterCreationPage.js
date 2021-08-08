@@ -191,7 +191,7 @@ function CharacterCreationPage() {
         onClick={() => {
           setNameError(false);
           setAddError(false);
-          if (name && !isNaN(houseNum)) {
+          if (name && houseNum && !isNaN(houseNum)) {
             let address = `${houseNum} ${streetName} ${streetType}`;
             let neighbor = {
               name,
@@ -208,7 +208,7 @@ function CharacterCreationPage() {
           {
             setNameError(true);
           }
-          if (isNaN(houseNum))
+          if (!houseNum || isNaN(houseNum))
           {
             setAddError(true);
           }

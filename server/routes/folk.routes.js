@@ -72,8 +72,9 @@ function validNeighbor(neighbor) {
     height <= 100
   ) {
     arr = address.split(" ");
+    console.log(arr);
     if (
-      isNaN(arr[0]) ||
+      arr[0] === "" || isNaN(arr[0]) || 
       (arr[1] !== "Butterscotch" && arr[1] !== "Gingerbread") ||
       (arr[2] !== "Ave" && arr[2] !== "St")
     ) {
