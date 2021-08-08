@@ -204,12 +204,10 @@ function CharacterCreationPage() {
             };
             addNeighbor(neighbor);
           }
-          if (!name)
-          {
+          if (!name) {
             setNameError(true);
           }
-          if (!houseNum || isNaN(houseNum))
-          {
+          if (!houseNum || isNaN(houseNum)) {
             setAddError(true);
           }
         }}

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CharacterHouseDisplay from "./CharacterHouseDisplay";
-import { NeighborContext, UserContext } from "../../context";
+import { NeighborContext, UserContext, CookieContext } from "../../context";
 import CharacterDisplay from "./CharacterDisplay";
 
 function CharacterInteractionPage() {
   const { username } = useContext(UserContext);
+  const {refreshCookies} = useContext(CookieContext)
   const {
     visitAddress,
     neighborMsg,
@@ -54,6 +55,7 @@ function CharacterInteractionPage() {
                   <button
                     onClick={() => {
                       setDialogue(getCookie(currNeighbor));
+                      refreshCookies();
                     }}
                   >
                     Accept Delivery
@@ -61,6 +63,7 @@ function CharacterInteractionPage() {
                   <button
                     onClick={() => {
                       setDialogue(giveCookie(currNeighbor));
+                      refreshCookies();
                     }}
                   >
                     Deliver Cookie

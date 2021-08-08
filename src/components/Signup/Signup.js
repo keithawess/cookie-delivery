@@ -25,7 +25,6 @@ function Signup() {
             id="username"
           />
         </div>
-
         <div>
           <label htmlFor="password">Password: </label>
           <input
@@ -36,7 +35,6 @@ function Signup() {
             }}
           />
         </div>
-
         <button
           onClick={async (e) => {
             e.preventDefault();
@@ -65,7 +63,16 @@ function Signup() {
         >
           Signup
         </button>
-        <div>Already a member? <button onClick={()=>{history.push("/login")}}>Login</button></div>
+        <div>
+          Already a member?{" "}
+          <button
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            Login
+          </button>
+        </div>
         {error && <div>{error}</div>}
       </form>
     </div>

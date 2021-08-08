@@ -100,11 +100,10 @@ export function NeighborProvider(props) {
   });
 
   const giveCookie = useCallback((neighbor) => {
-    console.log(cookies.get(`${neighbor.name}'s Cookie`));
     let from;
     if (cookies.get(`${neighbor.name}'s Cookie`)) {
       let split = cookies.get(`${neighbor.name}'s Cookie`).split(" ");
-      from = split[6];
+      from = split[split.length - 1];
       cookies.remove(`${neighbor.name}'s Cookie`);
       return `Om nom nom! ${from}'s cookies are the best. Thank you for delivering this to me!`;
     } else {
@@ -145,7 +144,7 @@ export function NeighborProvider(props) {
         setNeighborMsg,
         visitAddress,
         currNeighbor,
-        setCurrNeighbor
+        setCurrNeighbor,
       }}
     >
       {props.children}
