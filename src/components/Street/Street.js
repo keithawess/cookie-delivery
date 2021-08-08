@@ -10,7 +10,7 @@ function Street() {
   const { neighborhood } = useContext(NeighborContext);
 
   return (
-    <div className="bg-green height-95">
+    <div className="bg-green min-height">
       <div>
         <label className="text-white" htmlFor="search">
           Address:{" "}
@@ -35,7 +35,7 @@ function Street() {
           Search
         </button>
       </div>
-      <div className="flex width-95 justify-center center height-95">
+      <div className="flex width-95 justify-center center min-height">
         <div className="flex col justify-space-evenly">
           {neighborhood
             .filter((house, i) => i < 5)

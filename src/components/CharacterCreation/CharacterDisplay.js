@@ -3,7 +3,7 @@ import sad from "./images/sad.png";
 import happy from "./images/happy.png";
 import skeptic from "./images/skeptic.png";
 import smile from "./images/smile.png";
-const faces = [sad, happy, skeptic, smile];
+const faces = [happy, sad, skeptic, smile];
 
 function CharacterDisplay({ name, face, color, roundness, height }) {
   return (

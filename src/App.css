@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .welcome-sign {
@@ -100,6 +101,10 @@ top: 10px;}
   height: 95%;
 }
 
+.min-height{
+  min-height: 90vh;
+}
+
 /* Character Creation Styling */
 
 .character-creation-container {
@@ -141,6 +146,10 @@ top: 10px;}
 
 .neighbor-face {
   width: 80%;
+}
+
+.neighbor-face-list {
+  max-width: 50px;
 }
 
 .dialogue-container {
@@ -277,8 +286,6 @@ top: 10px;}
 .bg-town {
   background-image: url("./components/townbackdrop.png");
   background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
 }
 
 /* .bg-street {

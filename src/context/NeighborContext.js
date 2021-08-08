@@ -19,16 +19,6 @@ export function NeighborProvider(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await popCall("/api/folk/population");
-      if (res.success) {
-        setPopulation(res.data);
-      }
-    }
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    async function fetchData() {
       const res = await randCall("/api/folk/random");
       if (res.success) {
         let temp = [...vin, ...res.data];
@@ -63,6 +53,16 @@ export function NeighborProvider(props) {
         setNeighborMsg("Successfully added neighbor!");
       } else {
         setNeighborMsg(res.error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await popCall("/api/folk/population");
+      if (res.success) {
+        setPopulation(res.data);
       }
     }
     fetchData();
