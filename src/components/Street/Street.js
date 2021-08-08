@@ -7,10 +7,10 @@ function Street() {
   const { neighborhood } = useContext(NeighborContext);
 
   return (
-    <div className="bg-street">
+    <div className="bg-green height-95">
       Street
-      <div className="flex width-95 justify-space-evenly">
-        <div className="flex col">
+      <div className="flex width-95 justify-center center height-95">
+        <div className="flex col justify-space-evenly">
           {neighborhood
             .filter((house, i) => i < 5)
             .map((house, i) => {
@@ -25,7 +25,8 @@ function Street() {
               );
             })}
         </div>
-        <div className="flex col">
+        <div className="bg-grey flex-quarter">&nbsp;</div><div className="bg-grey flex-quarter street">&nbsp;</div>
+        <div className="flex col justify-space-evenly">
           {neighborhood
             .filter((house, i) => i >= 5)
             .map((house, i) => {

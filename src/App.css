@@ -92,6 +92,14 @@ top: 10px;}
   bottom: 5px;
 }
 
+.street{
+  border-left: yellow dashed 5px;
+}
+
+.height-95{
+  height: 95%;
+}
+
 /* Character Creation Styling */
 
 .character-creation-container {
@@ -241,8 +249,16 @@ top: 10px;}
   flex-basis: calc(100% / 2 - 10px);
 }
 
+.flex-quarter {
+  flex-basis: calc(100% / 4 - 10px);
+}
+
 .flex-fifth {
   flex-basis: calc(100% / 5 - 4px);
+}
+
+.grow{
+  flex-grow: 1;
 }
 
 /* Backgrounds*/
@@ -271,8 +287,16 @@ top: 10px;}
   background-size: cover;
 } */
 
+.bg-green{
+  background-color: green;
+}
+
 .bg-sign-green {
   background-color: #308446;
+}
+
+.bg-grey{
+  background-color: grey;
 }
 
 .white-border {
