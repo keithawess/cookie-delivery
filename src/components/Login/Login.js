@@ -10,7 +10,7 @@ function Login() {
   const { initialLogin, username } = useContext(UserContext);
 
   return (
-    <div className="landing-page flex">
+    <div className="landing-page flex text-white">
       <form className="welcome-sign center bg-sign-green">
         Login
         <div>
@@ -49,7 +49,16 @@ function Login() {
         >
           Login
         </button>
-        <button onClick={()=>{history.push("/signup")}}>Signup</button>
+        <div>
+          Not a member yet?{" "}
+          <button
+            onClick={() => {
+              history.push("/signup");
+            }}
+          >
+            Signup
+          </button>
+        </div>
         {error && <div>{error}</div>}
       </form>
     </div>

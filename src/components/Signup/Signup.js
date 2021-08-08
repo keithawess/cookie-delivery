@@ -1,18 +1,20 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router";
 import { UserContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 
 function Signup() {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const history = useHistory();
   const [error, setError] = useState("");
   const { initialLogin } = useContext(UserContext);
   const { callAPI: signupCall } = useFetch("POST");
 
   return (
-    <div>
-      Signup
-      <form>
+    <div className="landing-page flex text-white">
+      <form className="welcome-sign center bg-sign-green">
+        Signup
         <div>
           <label htmlFor="username">Username: </label>
           <input
@@ -63,6 +65,7 @@ function Signup() {
         >
           Signup
         </button>
+        <div>Already a member? <button onClick={()=>{history.push("/login")}}>Login</button></div>
         {error && <div>{error}</div>}
       </form>
     </div>
