@@ -22,6 +22,8 @@ function CharacterCreationPage() {
   const [houseNum, setHouseNum] = useState(123);
   const [streetName, setStreetName] = useState("Gingerbread");
   const [streetType, setStreetType] = useState("Ave");
+  const [nameError, setNameError] = useState(false);
+  const [addError, setAddError] = useState(false);
 
   const { addNeighbor, neighborMsg, setNeighborMsg } =
     useContext(NeighborContext);
@@ -56,6 +58,7 @@ function CharacterCreationPage() {
           <label htmlFor="nameInput">Name: </label>
           <input
             id="nameInput"
+            className={nameError ? "name-error" : ""}
             value={name}
             onChange={(e) => {
               if (e.target.value.length <= 20) setName(e.target.value);
@@ -155,6 +158,7 @@ function CharacterCreationPage() {
           <label htmlFor="houseNumber">House Number: </label>
           <input
             id="houseNumber"
+            className={addError ? "name-error" : ""}
             value={houseNum}
             onChange={(e) => {
               setHouseNum(e.target.value);
@@ -185,6 +189,8 @@ function CharacterCreationPage() {
       </div>
       <button
         onClick={() => {
+          setNameError(false);
+          setAddError(false);
           if (name && !isNaN(houseNum)) {
             let address = `${houseNum} ${streetName} ${streetType}`;
             let neighbor = {
@@ -197,6 +203,14 @@ function CharacterCreationPage() {
               height,
             };
             addNeighbor(neighbor);
+          }
+          if (!name)
+          {
+            setNameError(true);
+          }
+          if (isNaN(houseNum))
+          {
+            setAddError(true);
           }
         }}
       >
