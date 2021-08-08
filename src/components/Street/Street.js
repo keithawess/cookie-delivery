@@ -26,7 +26,7 @@ function Street() {
           onClick={() => {
             if (searchBox) {
               let arr = searchBox.split(" ");
-              if (arr.length === 3 && !isNaN(arr[0])){
+              if (arr.length === 3 && !isNaN(arr[0])) {
                 history.push(`/address/${arr.join("%20")}`);
               }
             }
