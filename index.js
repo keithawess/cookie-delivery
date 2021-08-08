@@ -28,4 +28,3 @@ app.get("*", (req, res) => {
 })
 
 app.listen(PORT, () => console.log("Connected"));
-app.listen(PORT, () => console.log("Connected"));
