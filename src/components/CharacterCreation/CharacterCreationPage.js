@@ -6,11 +6,12 @@ import sad from "./images/sad.png";
 import happy from "./images/happy.png";
 import skeptic from "./images/skeptic.png";
 import smile from "./images/smile.png";
+import addy from "./images/Addy.png";
 import house1 from "./images/house1.png";
 import house2 from "./images/house2.png";
 import house3 from "./images/house3.png";
 const houseArr = [house1, house2, house3];
-const faces = [happy, sad, skeptic, smile];
+const faces = [happy, addy, skeptic, smile];
 
 function CharacterCreationPage() {
   const [height, setHeight] = useState(75);
@@ -28,6 +29,7 @@ function CharacterCreationPage() {
   const { addNeighbor, neighborMsg, setNeighborMsg } =
     useContext(NeighborContext);
 
+  //Clears NeighborMsg when component is closed.
   useEffect(() => {
     return setNeighborMsg("");
   }, []);
@@ -39,153 +41,162 @@ function CharacterCreationPage() {
       }
     >
       <h2>Create a Neighbor</h2>
-      <div>
-        <div className="flex justify-space-around align-items-center character-creation-neighbor flex-quarter">
-          <div className="flex-half">
-            <CharacterHouseDisplay house={house} height={150} />
+
+      {/* Displays current selections for house and neighbor*/}
+      <div className="flex justify-space-around align-items-center character-creation-neighbor flex-quarter">
+        <div className="flex-half">
+          <CharacterHouseDisplay house={house} height={150} />
+        </div>
+        <div className="margin-5 flex-half">
+          <CharacterDisplay
+            name={name}
+            face={face}
+            color={color}
+            roundness={roundness}
+            height={height}
+          />
+        </div>
+      </div>
+
+      {/* Input for name. Can be no more than 20 characters. */}
+      <div className="margin-5">
+        <label htmlFor="nameInput">Name: </label>
+        <input
+          id="nameInput"
+          className={nameError ? "name-error" : ""}
+          value={name}
+          onChange={(e) => {
+            if (e.target.value.length <= 20) setName(e.target.value);
+          }}
+        />
+      </div>
+
+      {/* Container for the rest of the neighbor inputs */}
+      <div className="flex input-container flex-fifth max-height-200">
+        {/* Container for height and roundness input */}
+        <div className="margin-5 flex-third">
+          <div>
+            {/* Slider for height */}
+            <label htmlFor="heightBar">Height:</label>
+            <input
+              id="heightBar"
+              type="range"
+              min="50"
+              max="100"
+              value={height}
+              onChange={(e) => {
+                setHeight(e.target.value);
+              }}
+              className="width-95"
+            />
           </div>
-          <div className="margin-5 flex-half">
-            <CharacterDisplay
-              name={name}
-              face={face}
-              color={color}
-              roundness={roundness}
-              height={height}
+
+          <div>
+            {/* Slider for roundness */}
+            <label htmlFor="roundnessBar">Roundness:</label>
+            <input
+              id="roundnessBar"
+              type="range"
+              min="0"
+              max="50"
+              value={roundness}
+              onChange={(e) => {
+                setRoundness(e.target.value);
+              }}
+              className="width-95"
             />
           </div>
         </div>
-        <div className="margin-5">
-          <label htmlFor="nameInput">Name: </label>
+
+        {/* Input for color */}
+        <div className="margin-5 flex-third">
+          <label htmlFor="colorSelector">Color:</label>
+          <br />
           <input
-            id="nameInput"
-            className={nameError ? "name-error" : ""}
-            value={name}
+            id="colorSelector"
+            className="input-container"
+            type="color"
+            value={color}
             onChange={(e) => {
-              if (e.target.value.length <= 20) setName(e.target.value);
+              setColor(e.target.value);
             }}
           />
         </div>
-        <div className="flex input-container flex-fifth max-height-200">
-          <div className="margin-5 flex-third">
-            <div>
-              <label htmlFor="heightBar">Height:</label>
-              <input
-                id="heightBar"
-                type="range"
-                min="50"
-                max="100"
-                value={height}
-                onChange={(e) => {
-                  setHeight(e.target.value);
-                }}
-                className="width-95"
-              />
-            </div>
 
-            <div>
-              <label htmlFor="roundnessBar">Roundness:</label>
-              <input
-                id="roundnessBar"
-                type="range"
-                min="0"
-                max="50"
-                value={roundness}
-                onChange={(e) => {
-                  setRoundness(e.target.value);
-                }}
-                className="width-95"
-              />
-            </div>
-          </div>
-
-          <div className="margin-5 flex-third">
-            <label htmlFor="colorSelector">Color:</label>
-            <br />
-            <input
-              id="colorSelector"
-              className="input-container"
-              type="color"
-              value={color}
-              onChange={(e) => {
-                setColor(e.target.value);
-              }}
-            />
-          </div>
-
-          <div className="margin-5 flex-third">
-            <label htmlFor="faceSelector">Face:</label>
-            <div className="flex wrap">
-              {faces.map((val, i) => {
-                return (
-                  <div
-                    key={i + 1000}
-                    className="margin-5 flex flex-half justify-space-around align-items-center"
-                    onClick={() => {
-                      setFace(i);
-                    }}
-                  >
-                    <img
-                      key={i + 100}
-                      className={`neighbor-face neighbor-face-list ${
-                        face === i ? "selected" : ""
-                      }`}
-                      src={val}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <div className="center">
-          <label htmlFor="houseSelector">House:</label>
-          <div className="flex align-items-end justify-space-evenly">
-            {houseArr.map((house, i) => {
+        {/* Displays clickable faces to choose from */}
+        <div className="margin-5 flex-third">
+          <label htmlFor="faceSelector">Face:</label>
+          <div className="flex wrap">
+            {faces.map((val, i) => {
               return (
                 <div
-                  key={i + 10000}
+                  key={i + 1000}
+                  className="margin-5 flex flex-half justify-space-around align-items-center"
                   onClick={() => {
-                    setHouse(i);
+                    setFace(i);
                   }}
                 >
-                  <CharacterHouseDisplay key={i} house={i} height={90} />
+                  <img
+                    key={i + 100}
+                    className={`neighbor-face neighbor-face-list ${
+                      face === i ? "selected" : ""
+                    }`}
+                    src={val}
+                  />
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="flex-quarter">
-          <label htmlFor="houseNumber">House Number: </label>
-          <input
-            id="houseNumber"
-            className={addError ? "name-error" : ""}
-            value={houseNum}
-            onChange={(e) => {
-              setHouseNum(e.target.value);
-            }}
-          />
-          <label htmlFor="streetName"> Street: </label>
-          <select
-            id="streetName"
-            value={streetName}
-            onChange={(e) => {
-              setStreetName(e.target.value);
-            }}
-          >
-            <option value="Gingerbread">Gingerbread</option>
-            <option value="Butterscotch">Butterscotch</option>
-          </select>
-          <select
-            id="streetType"
-            value={streetType}
-            onChange={(e) => {
-              setStreetType(e.target.value);
-            }}
-          >
-            <option value="St">St</option>
-            <option value="Ave">Ave</option>
-          </select>
+      </div>
+      <div className="center">
+        <label htmlFor="houseSelector">House:</label>
+        <div className="flex align-items-end justify-space-evenly">
+          {houseArr.map((house, i) => {
+            return (
+              <div
+                key={i + 10000}
+                onClick={() => {
+                  setHouse(i);
+                }}
+              >
+                <CharacterHouseDisplay key={i} house={i} height={90} />
+              </div>
+            );
+          })}
         </div>
+      </div>
+      <div className="flex-quarter">
+        <label htmlFor="houseNumber">House Number: </label>
+        <input
+          id="houseNumber"
+          className={addError ? "name-error" : ""}
+          value={houseNum}
+          onChange={(e) => {
+            setHouseNum(e.target.value);
+          }}
+        />
+        <label htmlFor="streetName"> Street: </label>
+        <select
+          id="streetName"
+          value={streetName}
+          onChange={(e) => {
+            setStreetName(e.target.value);
+          }}
+        >
+          <option value="Gingerbread">Gingerbread</option>
+          <option value="Butterscotch">Butterscotch</option>
+        </select>
+        <select
+          id="streetType"
+          value={streetType}
+          onChange={(e) => {
+            setStreetType(e.target.value);
+          }}
+        >
+          <option value="St">St</option>
+          <option value="Ave">Ave</option>
+        </select>
       </div>
       <button
         onClick={() => {
