@@ -17,6 +17,7 @@ export function NeighborProvider(props) {
   const { callAPI: houseCall } = useFetch("POST");
   const cookies = new Cookies();
 
+  // When application loads/refreshes populates neighborhood with random neighbors
   useEffect(() => {
     async function fetchData() {
       const res = await randCall("/api/folk/random");
@@ -34,6 +35,7 @@ export function NeighborProvider(props) {
     fetchData();
   }, []);
 
+  // Function to add neighbor to database
   const addNeighbor = useCallback((neighbor) => {
     async function fetchData() {
       const res = await addCall("/api/folk/add", {
@@ -58,6 +60,7 @@ export function NeighborProvider(props) {
     fetchData();
   }, []);
 
+  // Pulls number of neighbors in database
   useEffect(() => {
     async function fetchData() {
       const res = await popCall("/api/folk/population");
@@ -68,6 +71,7 @@ export function NeighborProvider(props) {
     fetchData();
   }, []);
 
+  // Function to get new cookie from neighbor for another neighbor in the neighborhood
   const getCookie = useCallback(
     (neighbor) => {
       let rand = Math.floor(Math.random() * 10);
@@ -87,6 +91,7 @@ export function NeighborProvider(props) {
     [neighborhood]
   );
 
+  // Pulls information about a neighbor based off address
   const visitAddress = useCallback((address) => {
     async function fetchData() {
       const res = await houseCall("/api/folk/get", { address: address });
@@ -99,6 +104,7 @@ export function NeighborProvider(props) {
     return fetchData();
   });
 
+  // Removes cookie when correct neighbor is found
   const giveCookie = useCallback((neighbor) => {
     let from;
     if (cookies.get(`${neighbor.name}'s Cookie`)) {
@@ -111,17 +117,15 @@ export function NeighborProvider(props) {
     }
   });
 
+  // Shuffles array given
   function shuffle(array) {
     var currentIndex = array.length,
       randomIndex;
 
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
-      // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
         array[currentIndex],

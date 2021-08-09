@@ -9,6 +9,7 @@ export function UserProvider(props) {
   const { callAPI: logoutCall } = useFetch("GET");
   const { callAPI: validateCall } = useFetch("GET");
 
+  // During first login, performs api call to validate user.
   const initialLogin = useCallback(
     (username, password) => {
       async function fetchData() {
@@ -27,10 +28,12 @@ export function UserProvider(props) {
     [username]
   );
 
+  // Sets username. Used for cookie validation
   const login = useCallback((user) => {
     setUsername(user.username);
   });
 
+  // Validates user.
   useEffect(() => {
     async function validate() {
       const res = await validateCall("/api/users/validate");
@@ -41,6 +44,7 @@ export function UserProvider(props) {
     validate();
   }, []);
 
+  // Function for logout.
   const logout = useCallback(() => {
     async function fetchData() {
       const res = await logoutCall("/api/users/logout");

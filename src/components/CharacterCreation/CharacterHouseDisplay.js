@@ -6,6 +6,7 @@ const houseArr = [house1, house2, house3];
 
 function CharacterHouseDisplay({ house, height }) {
   return (
+    // Displays house at a given height.
     <div>
       <img
         style={{ maxHeight: height + "px" }}

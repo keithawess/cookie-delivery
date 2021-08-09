@@ -7,6 +7,7 @@ const cookieList = [cookie1, cookie2, cookie3];
 function CookieDisplay({ cookie, info }) {
   const [modal, setModal] = useState(false);
   return (
+    // Displays modal when clicked.
     <div
       onClick={() => {
         if (modal) {
@@ -16,6 +17,7 @@ function CookieDisplay({ cookie, info }) {
         }
       }}
     >
+      {/* Modal containing cookie image and information */}
       <div
         className={`fixed full flex justify-center align-items-center ${
           !modal ? "hidden" : ""
@@ -27,11 +29,10 @@ function CookieDisplay({ cookie, info }) {
             className="absolute center modal-cookie"
             src={cookieList[cookie]}
           />
-          <div className="absolute cookie-info-bottom">
-              {info[1]}
-          </div>
+          <div className="absolute cookie-info-bottom">{info[1]}</div>
         </div>
       </div>
+      {/* Base cookie display */}
       <img className="cookie" src={cookieList[cookie]} />
     </div>
   );

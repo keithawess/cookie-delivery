@@ -14,6 +14,7 @@ function Login() {
       <form className="welcome-sign center bg-sign-green">
         Login
         <div>
+          {/* Username input */}
           <label htmlFor="username">Username: </label>
           <input
             value={usernameInput}
@@ -24,6 +25,7 @@ function Login() {
           />
         </div>
         <div>
+          {/* Password input */}
           <label htmlFor="password">Password: </label>
           <input
             type="password"
@@ -33,6 +35,7 @@ function Login() {
             }}
           />
         </div>
+        {/* Submit button. Username and password must be populated */}
         <button
           onClick={async (e) => {
             e.preventDefault();
@@ -49,6 +52,7 @@ function Login() {
         >
           Login
         </button>
+        {/* Button to navigate to signup page */}
         <div>
           Not a member yet?{" "}
           <button
@@ -59,6 +63,7 @@ function Login() {
             Signup
           </button>
         </div>
+        {/* Displays error if one exists */}
         {error && <div>{error}</div>}
       </form>
     </div>

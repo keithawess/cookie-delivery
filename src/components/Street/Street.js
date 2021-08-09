@@ -11,6 +11,7 @@ function Street() {
 
   return (
     <div className="bg-green min-height">
+      {/* Search box find neighbor by address */}
       <div>
         <label className="text-white" htmlFor="search">
           Address:{" "}
@@ -35,6 +36,8 @@ function Street() {
           Search
         </button>
       </div>
+
+      {/* Displays houses 5 houses on left */}
       <div className="flex width-95 justify-center center min-height">
         <div className="flex col justify-space-evenly">
           {neighborhood
@@ -51,8 +54,12 @@ function Street() {
               );
             })}
         </div>
+
+        {/* Street graphic */}
         <div className="bg-grey flex-quarter">&nbsp;</div>
         <div className="bg-grey flex-quarter street">&nbsp;</div>
+
+        {/* Displays 5 houses on the right */}
         <div className="flex col justify-space-evenly">
           {neighborhood
             .filter((house, i) => i >= 5)

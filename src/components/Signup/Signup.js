@@ -15,6 +15,7 @@ function Signup() {
     <div className="landing-page flex text-white">
       <form className="welcome-sign center bg-sign-green">
         Signup
+        {/* Username input */}
         <div>
           <label htmlFor="username">Username: </label>
           <input
@@ -25,6 +26,7 @@ function Signup() {
             id="username"
           />
         </div>
+        {/* Password input */}
         <div>
           <label htmlFor="password">Password: </label>
           <input
@@ -35,6 +37,7 @@ function Signup() {
             }}
           />
         </div>
+        {/* Submit button. Username and password must be populated and pass specific conditions */}
         <button
           onClick={async (e) => {
             e.preventDefault();
@@ -63,6 +66,7 @@ function Signup() {
         >
           Signup
         </button>
+        {/* Button to navigate to login */}
         <div>
           Already a member?{" "}
           <button
@@ -73,6 +77,7 @@ function Signup() {
             Login
           </button>
         </div>
+        {/* Displays error if one exists */}
         {error && <div>{error}</div>}
       </form>
     </div>

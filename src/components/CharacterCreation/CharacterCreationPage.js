@@ -6,12 +6,11 @@ import sad from "./images/sad.png";
 import happy from "./images/happy.png";
 import skeptic from "./images/skeptic.png";
 import smile from "./images/smile.png";
-import addy from "./images/Addy.png";
 import house1 from "./images/house1.png";
 import house2 from "./images/house2.png";
 import house3 from "./images/house3.png";
 const houseArr = [house1, house2, house3];
-const faces = [happy, addy, skeptic, smile];
+const faces = [happy, sad, skeptic, smile];
 
 function CharacterCreationPage() {
   const [height, setHeight] = useState(75);
@@ -149,6 +148,8 @@ function CharacterCreationPage() {
           </div>
         </div>
       </div>
+
+      {/* Displays clickable houses to choose from */}
       <div className="center">
         <label htmlFor="houseSelector">House:</label>
         <div className="flex align-items-end justify-space-evenly">
@@ -166,6 +167,8 @@ function CharacterCreationPage() {
           })}
         </div>
       </div>
+
+      {/* Input for house address. House number must be a number */}
       <div className="flex-quarter">
         <label htmlFor="houseNumber">House Number: </label>
         <input
@@ -198,6 +201,8 @@ function CharacterCreationPage() {
           <option value="Ave">Ave</option>
         </select>
       </div>
+
+      {/* Submit Button. Name and house number must be appropriately populated. */}
       <button
         onClick={() => {
           setNameError(false);

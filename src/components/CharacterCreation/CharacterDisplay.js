@@ -3,11 +3,11 @@ import sad from "./images/sad.png";
 import happy from "./images/happy.png";
 import skeptic from "./images/skeptic.png";
 import smile from "./images/smile.png";
-import addy from "./images/Addy.png";
-const faces = [happy, addy, skeptic, smile];
+const faces = [happy, sad, skeptic, smile];
 
 function CharacterDisplay({ name, face, color, roundness, height }) {
   return (
+    // Displays name if name is provided, else an empty placeholder.
     <div className="flex col align-items-center justify-center">
       {name ? name : <div>&nbsp;</div>}
       <div

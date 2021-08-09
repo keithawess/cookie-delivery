@@ -6,7 +6,7 @@ import CharacterDisplay from "./CharacterDisplay";
 
 function CharacterInteractionPage() {
   const { username } = useContext(UserContext);
-  const {refreshCookies} = useContext(CookieContext)
+  const { refreshCookies } = useContext(CookieContext);
   const {
     visitAddress,
     neighborMsg,
@@ -14,27 +14,30 @@ function CharacterInteractionPage() {
     currNeighbor,
     giveCookie,
     getCookie,
-    setCurrNeighbor
+    setCurrNeighbor,
   } = useContext(NeighborContext);
   const [dialogue, setDialogue] = useState(
     `Hi, ${username}! It's nice to see you. Would you mind doing me a favor?`
   );
+  // Finds neighbor info based off house address listed in URL
   let { add } = useParams();
   let address = add.split("%20").join(" ");
-
   useEffect(() => {
     visitAddress(address);
     return setNeighborMsg("");
   }, []);
 
+  // Ensures the current neighbor is reset when component is closed.
   useEffect(() => {
     return setCurrNeighbor(null);
-  },[])
+  }, []);
 
   return (
     <div>
+      {/* If neighbor exists, display name */}
       {currNeighbor && <div>{currNeighbor.name}'s House</div>}
       <div>
+        {/* If neighbor exists, display neighbor, house, and dialogue box */}
         {currNeighbor && (
           <>
             <div className="absolute abs-container z-back">
@@ -52,6 +55,7 @@ function CharacterInteractionPage() {
               <div className="dialogue-container center bg-cloud width-90">
                 <div>{dialogue}</div>
                 <div>
+                  {/* Button to get cookie from neighbor */}
                   <button
                     onClick={() => {
                       setDialogue(getCookie(currNeighbor));
@@ -60,6 +64,7 @@ function CharacterInteractionPage() {
                   >
                     Accept Delivery
                   </button>
+                  {/* Button to deliver cookie to neighbor if one exists */}
                   <button
                     onClick={() => {
                       setDialogue(giveCookie(currNeighbor));
@@ -73,6 +78,7 @@ function CharacterInteractionPage() {
             </div>
           </>
         )}
+        {/* If no neighbor or error, display error message */}
         {!currNeighbor && neighborMsg && <div>{neighborMsg}</div>}
       </div>
     </div>

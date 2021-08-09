@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import CookieDisplay from "./CookieDisplay";
 import { CookieContext } from "../../context";
 
-function CookieBasket({ cookie }) {
+function CookieBasket() {
   const { cookieBox, setHidden, hidden } = useContext(CookieContext);
   return (
     <div>
+      {/* Cookie button container. Implements drawer effect */}
       <div
         className={`cookie-basket-transition fixed cookie-button ${
           !hidden ? "cookie-button-up" : ""
@@ -23,6 +24,8 @@ function CookieBasket({ cookie }) {
           Cookies
         </button>
       </div>
+
+      {/* Container for cookies. Has drawer effect */}
       <div
         className={`fixed basket flex wrap cookie-basket-transition ${
           hidden ? "closed" : ""
